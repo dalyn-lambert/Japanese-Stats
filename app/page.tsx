@@ -5,32 +5,31 @@ const notion = new Client({ auth: process.env.NOTION_KEY });
 const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default async function Home() {
-  const date = '2023-05-02';
+  const date = '2023-05-01';
 
-  const propertyIdTime = 'apeq';
+  const database = await notion.databases.retrieve({ database_id: databaseId });
 
-  if (databaseId) {
-    // retrieves pages from database for a specific date
-    const pages = await notion.databases.query({
-      database_id: databaseId,
-      filter: {
-        property: 'Date',
-        date: {
-          equals: date,
+  // retrieves pages from database for a specific date
+  const pages = await notion.databases.query({
+    database_id: databaseId,
+    filter: {
+      and: [
+        {
+          property: 'Date',
+          date: {
+            equals: date,
+          },
         },
-      },
-    });
-    // console.log(pages.results);
+        { property: 'Time (mins)', number: { does_not_equal: 0 } },
+      ],
+    },
+  });
 
-    const pageArray = pages.results;
+  // build array of pageIds
+  const pageIds = pages.results.map((page) => page.id);
 
-    // get all pages ids
-    const pageIds = pageArray.map((page) => page.id);
-    console.log({ pageIds });
+  pageIds.forEach(getStudyDetails);
 
-    pageIds.forEach(getCategory);
-    console.log({ pageIds });
-  }
   return (
     <div className=''>
       <div>Today is {date}</div>
@@ -38,12 +37,39 @@ export default async function Home() {
   );
 }
 
-async function getCategory(pageId: string) {
-  const propertyIdCategory = 'jcJI';
-  const response = await notion.pages.properties.retrieve({
+async function getStudyDetails(pageId: string) {
+  const categoryPropId = 'jcJI';
+  const timePropId = 'apeq';
+  const mediaPropId = '%3AWl%3D';
+
+  const page = await notion.pages.retrieve({ page_id: pageId });
+  const title = page.properties.Details.title[0].plain_text;
+
+  const category = await notion.pages.properties.retrieve({
     page_id: pageId,
-    property_id: propertyIdCategory,
+    property_id: categoryPropId,
   });
-  console.log(response.select.name);
-  return response.select.name;
+
+  const relation = await notion.pages.properties.retrieve({
+    page_id: pageId,
+    property_id: mediaPropId,
+  });
+
+  const relationId = relation.results[0].relation.id;
+
+  const mediaPage = await notion.pages.retrieve({ page_id: relationId });
+  const mediaTitle = mediaPage.properties.Name.title[0].plain_text;
+
+  const time = await notion.pages.properties.retrieve({
+    page_id: pageId,
+    property_id: timePropId,
+  });
+  console.log('title:');
+  console.log(title);
+  console.log('media:');
+  console.log(mediaTitle);
+  console.log('category:');
+  console.log(category.select.name);
+  console.log('time:');
+  console.log(time.number);
 }
