@@ -1,12 +1,14 @@
-import { getTodaysStudies } from '@/lib/notion';
-import { format } from 'date-fns';
+import TodaysStudies from '@/components/TodaysStudies';
 
 export default async function Home() {
-  const data = await getTodaysStudies();
-  console.log(data);
+  // {format(new Date(), 'MM/dd/yyyy')}
+  const today = '2023-05-03';
   return (
     <div className=''>
-      <div>Today is {format(new Date(), 'MM/dd/yyyy')}</div>
+      <div className=''>Study Activity for {today}</div>
+      {/* https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}
+      {/* @ts-expect-error Server Component */}
+      <TodaysStudies />
     </div>
   );
 }
