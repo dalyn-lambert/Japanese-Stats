@@ -26,7 +26,7 @@ export const getTodaysStudies = async () => {
     },
   });
   const allPages = pages.results;
-  console.log(allPages);
+
   // return study details
   const activities: StudyActivity[] = allPages.map((page) => {
     // @ts-ignore
