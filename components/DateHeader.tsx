@@ -1,6 +1,7 @@
+import { format } from "date-fns";
+
 const DateHeader = async () => {
-  // {format(new Date(), 'MM/dd/yyyy')}
-  const today = '2023-05-03';
+  const today = format(new Date(), 'MM/dd/yyyy');
   return (
     <div className='group drop-shadow-lg shadow-cyan-200'>
       <div className='bg-dk w-[200px] h-[25px] rounded-t-sm pl-2'>

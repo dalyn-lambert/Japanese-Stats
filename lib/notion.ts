@@ -1,10 +1,12 @@
 import { Client } from '@notionhq/client';
+import { format } from 'date-fns';
 
 const notion = new Client({ auth: process.env.NOTION_KEY });
 
 const databaseId = process.env.NOTION_DATABASE_ID as string;
 
-const today = '2023-05-03';
+const today = format(new Date(), 'yyyy-MM-dd');
+
 type StudyCategory = '話す' | '聴く' | '読書' | 'ゲーム' | '観る';
 
 type StudyActivity = { id: string; title: string; media: string; category: StudyCategory; time: number };
