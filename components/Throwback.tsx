@@ -1,9 +1,9 @@
-import { getTodaysStudies } from '@/lib/notion';
+import { getThrowbackStudies } from '@/lib/notion';
 import { StudyCategory } from '@/lib/types';
 import { Bookmark, Headphones, MessageCircle, Play, Tv } from 'react-feather';
 
 const getData = async () => {
-  const activities = await getTodaysStudies();
+  const activities = await getThrowbackStudies();
   return activities;
 };
 
@@ -24,14 +24,13 @@ function getIconForCategory(category: StudyCategory) {
       return '•';
   }
 }
-
-const TodaysStudies = async () => {
+const Throwback = async () => {
   const activities = await getData();
   return (
     <div className='group drop-shadow-lg shadow-cyan-200'>
       <div className='bg-dk w-[500px] h-[25px] rounded-t-sm pl-2'>
-        <span className='group-hover:opacity-0 absolute'>今日の勉強</span>
-        <span className='opacity-0 group-hover:opacity-100 absolute'>{"Today's Studies"}</span>
+        <span className='group-hover:opacity-0 absolute'>去年</span>
+        <span className='opacity-0 group-hover:opacity-100 absolute'>Throwback</span>
       </div>
       <div className='bg-lt w-[500px] h-[180px] rounded-b-sm p-4 overflow-y-scroll'>
         {activities.map((activity) => (
@@ -48,4 +47,4 @@ const TodaysStudies = async () => {
   );
 };
 
-export default TodaysStudies;
+export default Throwback;

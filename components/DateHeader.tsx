@@ -1,8 +1,6 @@
-import { format } from 'date-fns';
-import ja from 'date-fns/locale/ja';
+import { TODAY_JAPANESE } from '@/lib/globals';
 
 const DateHeader = async () => {
-  const today = format(new Date(), 'EE MMM do', { locale: ja });
   return (
     <div className='group drop-shadow-lg shadow-cyan-200'>
       <div className='bg-dk w-[200px] h-[25px] rounded-t-sm pl-2'>
@@ -10,7 +8,7 @@ const DateHeader = async () => {
         <span className='opacity-0 group-hover:opacity-100 absolute'>Date</span>
       </div>
       <div className='bg-lt w-[200px] h-[75px] rounded-b-sm text-4xl'>
-        <div className='text-center pt-2'>{today}</div>
+        <div className='text-center pt-2'>{TODAY_JAPANESE}</div>
       </div>
     </div>
   );

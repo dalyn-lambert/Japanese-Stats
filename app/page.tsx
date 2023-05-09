@@ -1,5 +1,6 @@
 import DateHeader from '@/components/DateHeader';
 import TaskBar from '@/components/TaskBar';
+import Throwback from '@/components/Throwback';
 import TodaysStudies from '@/components/TodaysStudies';
 
 export default async function Home() {
@@ -11,6 +12,8 @@ export default async function Home() {
         <DateHeader />
         {/* @ts-expect-error Server Component */}
         <TodaysStudies />
+        {/* @ts-expect-error Server Component */}
+        <Throwback />
       </div>
       <div className='fixed bottom-0'>
         {/* @ts-expect-error Server Component */}
