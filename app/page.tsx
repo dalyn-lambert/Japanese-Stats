@@ -9,12 +9,10 @@ export default async function Home() {
         {/* https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}
         {/* @ts-expect-error Server Component */}
         <DateHeader />
-        {/* https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}
         {/* @ts-expect-error Server Component */}
         <TodaysStudies />
       </div>
       <div className='fixed bottom-0'>
-        {/* https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}
         {/* @ts-expect-error Server Component */}
         <TaskBar />
       </div>
