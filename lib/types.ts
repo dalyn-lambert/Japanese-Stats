@@ -8,3 +8,13 @@ export type StudyActivity = {
   time: number;
   date: string;
 };
+
+export type MonthlyStats = {
+  id: string;
+  month: string;
+  listening: number;
+  reading: number;
+  speaking: number;
+  games: number;
+  watching: number;
+};

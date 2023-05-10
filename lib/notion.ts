@@ -1,15 +1,17 @@
 import { Client } from '@notionhq/client';
 import { LAST_YEAR, TODAY } from './globals';
-import { StudyActivity } from './types';
+import { MonthlyStats, StudyActivity } from './types';
 
 const notion = new Client({ auth: process.env.NOTION_KEY });
 
-const databaseId = process.env.NOTION_DATABASE_ID as string;
+const studyTrackerDB = process.env.NOTION_STUDY_TRACKER_DATABASE_ID as string;
+const studyPostsDB = process.env.NOTION_STUDY_POSTS_DATABASE_ID as string;
+const habitsDB = process.env.NOTION_HABITS_DATABASE_ID as string;
 
 export const getTodaysStudies = async () => {
   // get pages
   const pages = await notion.databases.query({
-    database_id: databaseId,
+    database_id: studyTrackerDB,
     filter: {
       and: [
         {
@@ -46,7 +48,7 @@ export const getTodaysStudies = async () => {
 export const getThrowbackStudies = async () => {
   // get pages
   const pages = await notion.databases.query({
-    database_id: databaseId,
+    database_id: studyTrackerDB,
     filter: {
       and: [
         {
@@ -80,10 +82,55 @@ export const getThrowbackStudies = async () => {
   return activities;
 };
 
+export const getMonthlyStats = async () => {
+  // get pages
+  const pages = await notion.databases.query({
+    database_id: studyPostsDB,
+    filter: {
+      and: [
+        {
+          property: 'Type',
+          select: {
+            equals: '2023 Progress Report',
+          },
+        },
+        {
+          property: 'Status',
+          // @ts-ignore
+          status: {
+            equals: 'Done',
+          },
+        },
+      ],
+    },
+  });
+  const allPages = pages.results;
+
+  // return study details
+  const stats: MonthlyStats[] = allPages.map((page) => {
+    return {
+      id: page.id,
+      // @ts-ignore
+      month: page.properties.Month.select.name,
+      // @ts-ignore
+      reading: page.properties['Reading (minutes)'].number,
+      // @ts-ignore
+      listening: page.properties['Listening (minutes)'].number,
+      // @ts-ignore
+      watching: page.properties['Watching (minutes)'].number,
+      // @ts-ignore
+      speaking: page.properties['Speaking (minutes)'].number,
+      // @ts-ignore
+      games: page.properties['Games (minutes)'].number,
+    };
+  });
+  return stats;
+};
+
 export const getLastRead = async () => {
   // get page
   const page = await notion.databases.query({
-    database_id: databaseId,
+    database_id: studyTrackerDB,
     sorts: [
       {
         property: 'Date',
@@ -91,14 +138,10 @@ export const getLastRead = async () => {
       },
     ],
     filter: {
-      and: [
-        {
-          property: 'Category',
-          select: {
-            equals: '読書',
-          },
-        },
-      ],
+      property: 'Category',
+      select: {
+        equals: '読書',
+      },
     },
     page_size: 1,
   });
@@ -126,7 +169,7 @@ export const getLastRead = async () => {
 export const getLastGame = async () => {
   // get page
   const page = await notion.databases.query({
-    database_id: databaseId,
+    database_id: studyTrackerDB,
     sorts: [
       {
         property: 'Date',
@@ -134,14 +177,10 @@ export const getLastGame = async () => {
       },
     ],
     filter: {
-      and: [
-        {
-          property: 'Category',
-          select: {
-            equals: 'ゲーム',
-          },
-        },
-      ],
+      property: 'Category',
+      select: {
+        equals: 'ゲーム',
+      },
     },
     page_size: 1,
   });
@@ -169,7 +208,7 @@ export const getLastGame = async () => {
 export const getLastSpeaking = async () => {
   // get page
   const page = await notion.databases.query({
-    database_id: databaseId,
+    database_id: studyTrackerDB,
     sorts: [
       {
         property: 'Date',
@@ -177,14 +216,10 @@ export const getLastSpeaking = async () => {
       },
     ],
     filter: {
-      and: [
-        {
-          property: 'Category',
-          select: {
-            equals: '話す',
-          },
-        },
-      ],
+      property: 'Category',
+      select: {
+        equals: '話す',
+      },
     },
     page_size: 1,
   });
@@ -212,7 +247,7 @@ export const getLastSpeaking = async () => {
 export const getLastWatch = async () => {
   // get page
   const page = await notion.databases.query({
-    database_id: databaseId,
+    database_id: studyTrackerDB,
     sorts: [
       {
         property: 'Date',
@@ -220,14 +255,10 @@ export const getLastWatch = async () => {
       },
     ],
     filter: {
-      and: [
-        {
-          property: 'Category',
-          select: {
-            equals: '観る',
-          },
-        },
-      ],
+      property: 'Category',
+      select: {
+        equals: '観る',
+      },
     },
     page_size: 1,
   });
@@ -255,7 +286,7 @@ export const getLastWatch = async () => {
 export const getLastListen = async () => {
   // get page
   const page = await notion.databases.query({
-    database_id: databaseId,
+    database_id: studyTrackerDB,
     sorts: [
       {
         property: 'Date',
@@ -263,14 +294,10 @@ export const getLastListen = async () => {
       },
     ],
     filter: {
-      and: [
-        {
-          property: 'Category',
-          select: {
-            equals: '聴く',
-          },
-        },
-      ],
+      property: 'Category',
+      select: {
+        equals: '聴く',
+      },
     },
     page_size: 1,
   });
@@ -293,4 +320,13 @@ export const getLastListen = async () => {
     };
   });
   return activity;
+};
+
+export const getWritingDaysForMonth = async () => {
+  const pageId = 'ee6f34d870254f5a99fc945bbb41b958';
+  const response = await notion.pages.retrieve({ page_id: pageId });
+  // @ts-ignore
+  const days = response.properties['Current Month'].formula.number;
+  // console.log(days);
+  return days;
 };
