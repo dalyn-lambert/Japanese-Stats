@@ -14,14 +14,13 @@ const getData = async () => {
 
 const LastStudied = async () => {
   const activities = await getData();
-  console.log(typeof activities[0].date);
   return (
     <div className='group drop-shadow-lg shadow-cyan-200'>
-      <div className='bg-dk w-[500px] h-[25px] rounded-t-sm pl-2'>
+      <div className='bg-dk w-[550px] h-[25px] rounded-t-sm pl-2'>
         <span className='group-hover:opacity-0 absolute'>前回の学習</span>
         <span className='opacity-0 group-hover:opacity-100 absolute'>Last Studied</span>
       </div>
-      <div className='bg-lt w-[500px] h-[180px] rounded-b-sm p-4 overflow-y-scroll'>
+      <div className='bg-lt w-[550px] h-[250px] rounded-b-sm p-4'>
         {activities.map((activity) => (
           <div key={activity.id} className='flex flex-row text-base pb-4'>
             <div className='pr-2 shrink-0'>{getIconForCategory(activity.category)}</div>
