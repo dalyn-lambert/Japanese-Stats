@@ -1,29 +1,12 @@
 import { getTodaysStudies } from '@/lib/notion';
-import { StudyCategory } from '@/lib/types';
-import { Bookmark, Headphones, MessageCircle, Play, Tv } from 'react-feather';
+import { getIconForCategory } from '@/lib/utils';
+
 
 const getData = async () => {
   const activities = await getTodaysStudies();
   return activities;
 };
 
-function getIconForCategory(category: StudyCategory) {
-  switch (category) {
-    case '話す':
-      return <MessageCircle width={18} height={18} />;
-    case '聴く':
-      console.log('headphones');
-      return <Headphones width={18} height={18} />;
-    case 'ゲーム':
-      return <Play width={18} height={18} />;
-    case '観る':
-      return <Tv width={18} height={18} />;
-    case '読書':
-      return <Bookmark width={18} height={18} />;
-    default:
-      return '•';
-  }
-}
 
 const TodaysStudies = async () => {
   const activities = await getData();
