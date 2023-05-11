@@ -18,3 +18,7 @@ export type MonthlyStats = {
   games: number;
   watching: number;
 };
+
+export type WindowTitleProps = { English: string; Japanese: string };
+
+export type WindowProps = { children: any } & WindowTitleProps;

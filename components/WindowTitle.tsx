@@ -1,4 +1,4 @@
-type WindowTitleProps = { English: string; Japanese: string };
+import { WindowTitleProps } from '@/lib/types';
 
 function WindowTitle(props: WindowTitleProps) {
   return (
