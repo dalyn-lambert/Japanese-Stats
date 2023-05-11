@@ -9,20 +9,21 @@ import Writing from '@/components/Writing';
 export default async function Home() {
   return (
     <>
-      <div className='flex flex-row flex-wrap gap-4 p-4'>
+      <div className='flex flex-row flex-wrap grow-0 gap-4 p-4'>
         {/* https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}
-        {/* @ts-expect-error Server Component */}
-        <DateHeader />
+        <div className='flex flex-col gap-4'>
+          {/* @ts-expect-error Server Component */}
+          <DateHeader />
+          {/* @ts-expect-error Server Component */}
+          <Writing />
+        </div>
         {/* @ts-expect-error Server Component */}
         <TodaysStudies />
         {/* @ts-expect-error Server Component */}
         <Throwback />
-        <div className='flex flex-col gap-4'>
-          {/* @ts-expect-error Server Component */}
-          <LastStudied />
-          {/* @ts-expect-error Server Component */}
-          <Writing />
-        </div>
+        {/* @ts-expect-error Server Component */}
+        <LastStudied />
+
         {/* @ts-expect-error Server Component */}
         <MonthlyStats />
       </div>

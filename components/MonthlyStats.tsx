@@ -10,7 +10,7 @@ const getData = async () => {
 const MonthlyStats = async () => {
   const stats = await getData();
   return (
-    <Window English='Study Time by Month' Japanese='月の勉強'>
+    <Window English='Study Time by Month' Japanese='月の勉強' width={'w-[750px]'} height={'h-[500px]'}>
       {stats.map((month) => (
         <div key={month.id} className='flex flex-col text-base pb-4'>
           <span>{month.month}</span>

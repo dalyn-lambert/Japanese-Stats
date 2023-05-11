@@ -16,7 +16,7 @@ const getData = async () => {
 const LastStudied = async () => {
   const activities = await getData();
   return (
-    <Window English='Last Studied' Japanese='前回の学習'>
+    <Window English='Last Studied' Japanese='前回の学習' width={'w-[500px]'} height={'h-[400px]'}>
       {activities.map((activity) => (
         <div key={activity.id} className='flex flex-row text-base pb-4'>
           <div className='pr-2 shrink-0'>{getIconForCategory(activity.category)}</div>

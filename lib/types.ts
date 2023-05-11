@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export type StudyCategory = '話す' | '聴く' | '読書' | 'ゲーム' | '観る';
 
 export type StudyActivity = {
@@ -21,4 +23,4 @@ export type MonthlyStats = {
 
 export type WindowTitleProps = { English: string; Japanese: string };
 
-export type WindowProps = { children: any } & WindowTitleProps;
+export type WindowProps = { children: ReactNode; width: string; height: string } & WindowTitleProps;

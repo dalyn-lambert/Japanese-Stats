@@ -10,7 +10,7 @@ const getData = async () => {
 const TodaysStudies = async () => {
   const activities = await getData();
   return (
-    <Window English="Today's Studies" Japanese='今日の勉強 - ノート'>
+    <Window English="Today's Studies" Japanese='今日の勉強 - ノート' width={'w-[500px]'} height={'h-[300px]'}>
       {activities.map((activity) => (
         <div key={activity.id} className='flex flex-row text-base pb-4'>
           <div className='pr-2 shrink-0'>{getIconForCategory(activity.category)}</div>
