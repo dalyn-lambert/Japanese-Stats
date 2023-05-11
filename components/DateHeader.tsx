@@ -1,13 +1,11 @@
 import { TODAY_JAPANESE } from '@/lib/globals';
+import WindowTitle from './WindowTitle';
 
 const DateHeader = async () => {
   return (
-    <div className='group drop-shadow-lg shadow-cyan-200'>
-      <div className='bg-dk w-[200px] h-[25px] rounded-t-sm pl-2'>
-        <span className='group-hover:opacity-0 absolute'>日付</span>
-        <span className='opacity-0 group-hover:opacity-100 absolute'>Date</span>
-      </div>
-      <div className='bg-lt w-[200px] h-[75px] rounded-b-sm text-4xl'>
+    <div className='w-[200px] group drop-shadow-lg shadow-cyan-200'>
+      <WindowTitle English='Date' Japanese='日付' />
+      <div className=' h-[75px] bg-slate-100 border-[1px] border-slate-600 rounded-sm p-4 overflow-y-scroll'>
         <div className='text-center pt-2'>{TODAY_JAPANESE}</div>
       </div>
     </div>

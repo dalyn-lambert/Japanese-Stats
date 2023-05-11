@@ -1,5 +1,6 @@
 import { getMonthlyStats } from '@/lib/notion';
 import { toHoursAndMinutes } from '@/lib/utils';
+import WindowTitle from './WindowTitle';
 
 const getData = async () => {
   const stats = await getMonthlyStats();
@@ -9,12 +10,9 @@ const getData = async () => {
 const MonthlyStats = async () => {
   const stats = await getData();
   return (
-    <div className='group drop-shadow-lg shadow-cyan-200'>
-      <div className='bg-dk w-[750px] h-[25px] rounded-t-sm pl-2'>
-        <span className='group-hover:opacity-0 absolute'>月の勉強</span>
-        <span className='opacity-0 group-hover:opacity-100 absolute'>Study Time by Month</span>
-      </div>
-      <div className='bg-lt w-[750px] h-[500px] rounded-b-sm p-4 overflow-y-scroll'>
+    <div className='w-[750px] group drop-shadow-lg shadow-cyan-200'>
+      <WindowTitle English='Study Time by Month' Japanese='月の勉強' />
+      <div className=' h-[500px] bg-slate-100 border-[1px] border-slate-600 rounded-sm p-4 overflow-y-scroll'>
         {stats.map((month) => (
           <div key={month.id} className='flex flex-col text-base pb-4'>
             <span>{month.month}</span>

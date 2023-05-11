@@ -4,7 +4,7 @@ import MonthlyStats from '@/components/MonthlyStats';
 import TaskBar from '@/components/TaskBar';
 import Throwback from '@/components/Throwback';
 import TodaysStudies from '@/components/TodaysStudies';
-import WritingCalulator from '@/components/WritingCalculator';
+import Writing from '@/components/Writing';
 
 export default async function Home() {
   return (
@@ -21,7 +21,7 @@ export default async function Home() {
           {/* @ts-expect-error Server Component */}
           <LastStudied />
           {/* @ts-expect-error Server Component */}
-          <WritingCalulator />
+          <Writing />
         </div>
         {/* @ts-expect-error Server Component */}
         <MonthlyStats />
