@@ -10,8 +10,8 @@ module.exports = {
       colors: {
         background: '#6170b3',
         'windows-gray': '#c1c1c1',
-        dk: '#cc808c',
-        lt: '#e9aab2',
+        'gradient-1': '#cf614a',
+        'gradient-2': '#f3d563',
       },
     },
   },
