@@ -7,7 +7,7 @@ const getData = async () => {
   return activities;
 };
 
-const TodaysStudies = async () => {
+const TodayNotepad = async () => {
   const activities = await getData();
   return (
     <Window English="Today's Studies" Japanese='今日の勉強' width={'w-[500px]'} height={'h-[300px]'}>
@@ -26,4 +26,4 @@ const TodaysStudies = async () => {
   );
 };
 
-export default TodaysStudies;
+export default TodayNotepad;
