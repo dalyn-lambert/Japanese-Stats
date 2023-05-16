@@ -1,4 +1,5 @@
 import { StudyCategory } from '@/lib/types';
+import { formatDistance, parseISO } from 'date-fns';
 import { Bookmark, Headphones, MessageCircle, Play, Tv } from 'react-feather';
 
 export function getIconForCategory(category: StudyCategory) {
@@ -15,6 +16,34 @@ export function getIconForCategory(category: StudyCategory) {
       return <Bookmark width={18} height={18} />;
     default:
       return '•';
+  }
+}
+
+export function getColorForCategory(category: StudyCategory) {
+  switch (category) {
+    case '話す':
+      return 'speak-blue';
+    case '聴く':
+      return 'listen-purple';
+    case 'ゲーム':
+      return 'game-green';
+    case '観る':
+      return 'watch-orange';
+    case '読書':
+      return 'read-pink';
+    default:
+      return 'red-500';
+  }
+}
+
+export function getBarTypeForLastStudied(date: string) {
+  const elapsedTime = formatDistance(parseISO(date), new Date());
+  const splitTime = elapsedTime.split(' ');
+  const days = Number(splitTime[0]);
+  if (days > 7) {
+    return 'border';
+  } else {
+    return 'bg';
   }
 }
 

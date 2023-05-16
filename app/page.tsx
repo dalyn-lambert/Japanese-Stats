@@ -13,6 +13,8 @@ export default async function Home() {
       <div className='flex flex-row flex-wrap grow-0 gap-4 p-4'>
         {/* https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}　
         {/* @ts-expect-error Server Component */}
+        <LastStudied />
+        {/* @ts-expect-error Server Component */}
         <Calendar />
         {/* @ts-expect-error Server Component */}
         <TodayNotepad />
@@ -24,8 +26,6 @@ export default async function Home() {
         <MonthlyStats />
         {/* @ts-expect-error Server Component */}
         <GameLog />
-        {/* @ts-expect-error Server Component */}
-        <LastStudied />
       </div>
       <div className='fixed bottom-0'>
         {/* @ts-expect-error Server Component */}
