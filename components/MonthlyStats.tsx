@@ -9,8 +9,8 @@ const getData = async () => {
 const MonthlyStats = async () => {
   const stats = await getData();
   return (
-    <Window English='Study Time by Month' Japanese='月の勉強' width={'w-[750px]'} height={'h-[500px]'}>
-      <div>someday a graph</div>
+    <Window English='Study Time by Month' Japanese='月の勉強' width={'w-[650px]'} height={'h-[400px]'}>
+      <div>someday a grapS</div>
     </Window>
   );
 };
