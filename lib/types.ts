@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export type StudyCategory = '話す' | '聴く' | '読書' | 'ゲーム' | '観る';
+export type StudyCategory = '話す' | '聴く' | '読書' | 'ゲーム' | '観る' | '書く';
 
 export type StudyActivity = {
   id: string;
@@ -26,3 +26,5 @@ export type WindowTitleProps = { English: string; Japanese: string };
 export type WindowProps = { children: ReactNode; width: string; height: string } & WindowTitleProps;
 
 export type GameBubbleProps = StudyActivity;
+
+export type CalendarColumnProps = { date: string };

@@ -1,5 +1,5 @@
 import { Client } from '@notionhq/client';
-import { TODAY } from './globals';
+import { TODAY_DB } from './globals';
 import { MonthlyStats, StudyActivity } from './types';
 
 const notion = new Client({ auth: process.env.NOTION_KEY });
@@ -17,7 +17,7 @@ export const getTodaysStudies = async () => {
         {
           property: 'Date',
           date: {
-            equals: TODAY,
+            equals: TODAY_DB,
           },
         },
         { property: 'Time (mins)', number: { does_not_equal: 0 } },
