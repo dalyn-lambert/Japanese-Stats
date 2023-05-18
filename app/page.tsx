@@ -2,6 +2,7 @@ import Calendar from '@/components/Calendar';
 import GameLog from '@/components/GameLog';
 import LastStudied from '@/components/LastStudied';
 import MonthlyStats from '@/components/MonthlyStats';
+import TaskBar from '@/components/TaskBar';
 import TodayNotepad from '@/components/TodayNotepad';
 import WritingAlert from '@/components/WritingAlert';
 import YearlyStats from '@/components/YearlyStats';
@@ -26,9 +27,10 @@ export default async function Home() {
         {/* @ts-expect-error Server Component */}
         <MonthlyStats />
       </div>
-      {/* <div className='fixed bottom-0'>
-         <TaskBar />
-      </div> */}
+      <div className='fixed bottom-0'>
+        {/* @ts-expect-error Server Component */}
+        <TaskBar />
+      </div>
     </>
   );
 }
