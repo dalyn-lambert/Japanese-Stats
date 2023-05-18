@@ -293,3 +293,42 @@ export const getWritingDaysForMonth = async () => {
   // console.log(days);
   return days;
 };
+
+export const getRecentGameLogs = async () => {
+  // get page
+  const page = await notion.databases.query({
+    database_id: studyTrackerDB,
+    sorts: [
+      {
+        property: 'Date',
+        direction: 'descending',
+      },
+    ],
+    filter: {
+      property: 'Category',
+      select: {
+        equals: 'ゲーム',
+      },
+    },
+    page_size: 5,
+  });
+  const pageResults = page.results;
+
+  // return study details
+  const activity: StudyActivity[] = pageResults.map((page) => {
+    return {
+      id: page.id,
+      // @ts-ignore
+      title: page.properties.Details.title[0].plain_text,
+      // @ts-ignore
+      category: page.properties.Category.select.name,
+      // @ts-ignore
+      time: page.properties['Time (mins)'].number,
+      // @ts-ignore
+      media: page.properties.Rollup.rollup.array[0]?.title[0].plain_text,
+      // @ts-ignore
+      date: page.properties.Date.date.start,
+    };
+  });
+  return activity;
+};

@@ -24,3 +24,5 @@ export type MonthlyStats = {
 export type WindowTitleProps = { English: string; Japanese: string };
 
 export type WindowProps = { children: ReactNode; width: string; height: string } & WindowTitleProps;
+
+export type GameBubbleProps = StudyActivity;

@@ -27,7 +27,9 @@ const LastStudied = async () => {
                 <div className=''>{activity.title}</div>
                 <div>{activity.media && `${activity.media}`}</div>
               </div>
-              <div className='border-b-2 border-dark-gray pb-1 w-[100px]'>{getTimeSinceStudied(activity.date)}</div>
+              <div className='border-b-2 border-dark-gray pb-1 w-[100px] text-center'>
+                {getTimeSinceStudied(activity.date)}
+              </div>
             </div>
             <div className='flex flex-col gap-2 items-center text-center'>
               <div className='flex flex-col flex-nowrap justify-end w-10 h-32 bg-dark-gray rounded-md'>
