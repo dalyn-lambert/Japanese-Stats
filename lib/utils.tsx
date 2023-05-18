@@ -47,6 +47,13 @@ export function getBarTypeForLastStudied(date: string) {
   }
 }
 
+export function getTimeSinceStudied(date: string) {
+  const time = formatDistance(parseISO(date), new Date(), { addSuffix: true });
+  if (time.includes('hours')) {
+    return 'Today';
+  } else return time;
+}
+
 export function toHoursAndMinutes(totalMinutes: number) {
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
