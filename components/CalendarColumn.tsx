@@ -9,7 +9,7 @@ function CalendarColumn(props: CalendarColumnProps) {
         <div className='w-28 h-6 rounded-md items-center bg-listen-purple'>{getIconForCategory('聴く')}</div>
         <div className='w-28 h-6 rounded-md items-center bg-dark-gray'>{getIconForCategory('読書')}</div>
         <div className='w-28 h-6 rounded-md items-center bg-dark-gray'>{getIconForCategory('観る')}</div>
-        <div className='w-28 h-6 rounded-md items-center bg-game-green'>{getIconForCategory('ゲーム')}</div>
+        <div className='w-28 h-6 rounded-md items-center bg-game-green'>{getIconForCategory('ゲーム')} </div>
         <div className='w-28 h-6 rounded-md items-center bg-dark-gray'>{getIconForCategory('話す')}</div>
         <div className='w-28 h-6 rounded-md items-center bg-dark-gray'>{getIconForCategory('書く')}</div>
       </div>

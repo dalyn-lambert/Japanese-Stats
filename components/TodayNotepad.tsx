@@ -16,7 +16,7 @@ const TodayNotepad = async () => {
           <div key={activity.id} className='flex flex-row text-base pb-4 content-center'>
             <div className='pr-2 shrink-0'>{getIconForCategory(activity.category)}</div>
             <div>
-              {activity.title} {activity.media && `~ ${activity.media}`}
+              {activity.title} {activity.media && `// ${activity.media}`}
             </div>
           </div>
         ))}

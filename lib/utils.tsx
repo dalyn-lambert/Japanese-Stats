@@ -1,22 +1,22 @@
 import { StudyCategory } from '@/lib/types';
 import { format, formatDistance, parseISO } from 'date-fns';
 import { ja } from 'date-fns/locale';
-import { Bookmark, Edit2, Headphones, MessageCircle, Play, Tv } from 'react-feather';
+import { bookmarkIcon, gameIcon, headphonesIcon, pencilIcon, speechIcon, tvIcon } from './icons';
 
 export function getIconForCategory(category: StudyCategory) {
   switch (category) {
     case '話す':
-      return <MessageCircle width={18} height={18} />;
+      return speechIcon;
     case '聴く':
-      return <Headphones width={18} height={18} />;
+      return headphonesIcon;
     case 'ゲーム':
-      return <Play width={18} height={18} />;
+      return gameIcon;
     case '観る':
-      return <Tv width={18} height={18} />;
+      return tvIcon;
     case '読書':
-      return <Bookmark width={18} height={18} />;
+      return bookmarkIcon;
     case '書く':
-      return <Edit2 width={18} height={18} />;
+      return pencilIcon;
     default:
       return '•';
   }

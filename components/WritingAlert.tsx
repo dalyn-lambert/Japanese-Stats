@@ -1,6 +1,6 @@
 import { getWritingDaysForMonth } from '@/lib/notion';
 
-import { AlertTriangle } from 'react-feather';
+import { starIcon } from '@/lib/icons';
 import Window from './Window';
 
 const getData = async () => {
@@ -14,7 +14,7 @@ const WritingAlert = async () => {
     <Window English='Writing' Japanese='書く' width='w-80' height='h-36'>
       <div className='flex flex-col gap-4 pt-2 items-center'>
         <div className='flex flex-row gap-1 justify-center'>
-          <AlertTriangle width={24} height={24} />
+          {starIcon}
           <div className='text-center'>You have written {days} days this month!</div>
         </div>
         <button

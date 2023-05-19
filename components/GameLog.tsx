@@ -1,3 +1,4 @@
+import { gameIcon } from '@/lib/icons';
 import { getRecentGameLogs } from '@/lib/notion';
 import GameBubble from './GameBubble';
 import Window from './Window';
