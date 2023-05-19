@@ -13,10 +13,10 @@ const TodayNotepad = async () => {
     <Window English="Today's Studies" Japanese='今日の勉強' width='w-96' height='h-72'>
       <div className='h-64 bg-slate-100 border-2 border-dark-gray rounded-sm p-4 overflow-y-scroll'>
         {activities.map((activity) => (
-          <div key={activity.id} className='flex flex-row text-base pb-4 content-center'>
+          <div key={activity.id} className='flex flex-row text-sm pb-4 content-center'>
             <div className='pr-2 shrink-0'>{getIconForCategory(activity.category)}</div>
             <div>
-              {activity.title} {activity.media && `// ${activity.media}`}
+              {activity.title} {activity.media && `～ ${activity.media}`}
             </div>
           </div>
         ))}

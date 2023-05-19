@@ -1,6 +1,6 @@
 import { Client } from '@notionhq/client';
 import { TODAY_DB } from './globals';
-import { MonthlyStats, StudyActivity } from './types';
+import { MonthlyStats, StudyActivity, StudyCategory } from './types';
 
 const notion = new Client({ auth: process.env.NOTION_KEY });
 
@@ -168,6 +168,45 @@ export const getLastGame = async () => {
   return activity;
 };
 
+export const getRecentGameLogs = async () => {
+  // get page
+  const page = await notion.databases.query({
+    database_id: studyTrackerDB,
+    sorts: [
+      {
+        property: 'Date',
+        direction: 'descending',
+      },
+    ],
+    filter: {
+      property: 'Category',
+      select: {
+        equals: 'ゲーム',
+      },
+    },
+    page_size: 5,
+  });
+  const pageResults = page.results;
+
+  // return study details
+  const activity: StudyActivity[] = pageResults.map((page) => {
+    return {
+      id: page.id,
+      // @ts-ignore
+      title: page.properties.Details.title[0].plain_text,
+      // @ts-ignore
+      category: page.properties.Category.select.name,
+      // @ts-ignore
+      time: page.properties['Time (mins)'].number,
+      // @ts-ignore
+      media: page.properties.Rollup.rollup.array[0]?.title[0].plain_text,
+      // @ts-ignore
+      date: page.properties.Date.date.start,
+    };
+  });
+  return activity;
+};
+
 export const getLastSpeaking = async () => {
   // get page
   const page = await notion.databases.query({
@@ -285,32 +324,26 @@ export const getLastListen = async () => {
   return activity;
 };
 
-export const getWritingDaysForMonth = async () => {
-  const pageId = 'ee6f34d870254f5a99fc945bbb41b958';
-  const response = await notion.pages.retrieve({ page_id: pageId });
-  // @ts-ignore
-  const days = response.properties['Current Month'].formula.number;
-  // console.log(days);
-  return days;
-};
-
-export const getRecentGameLogs = async () => {
+export const getActivityForDate = async (date: string, category: StudyCategory) => {
   // get page
   const page = await notion.databases.query({
     database_id: studyTrackerDB,
-    sorts: [
-      {
-        property: 'Date',
-        direction: 'descending',
-      },
-    ],
     filter: {
-      property: 'Category',
-      select: {
-        equals: 'ゲーム',
-      },
+      and: [
+        {
+          property: 'Date',
+          date: {
+            equals: date,
+          },
+        },
+        {
+          property: 'Category',
+          select: {
+            equals: category,
+          },
+        },
+      ],
     },
-    page_size: 5,
   });
   const pageResults = page.results;
 
@@ -331,4 +364,14 @@ export const getRecentGameLogs = async () => {
     };
   });
   return activity;
+};
+
+// something is wrong here
+export const getWritingDaysForMonth = async () => {
+  const pageId = 'ee6f34d870254f5a99fc945bbb41b958';
+  const response = await notion.pages.retrieve({ page_id: pageId });
+  // @ts-ignore
+  const days = response.properties['Current Month'].formula.number;
+  // console.log(days);
+  return days;
 };

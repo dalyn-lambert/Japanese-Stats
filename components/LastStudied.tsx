@@ -15,7 +15,7 @@ const getData = async () => {
 const LastStudied = async () => {
   const activities = await getData();
   return (
-    <Window English='Last Studied' Japanese='前回の学習' width='w-[45rem]' height='h-[26]'>
+    <Window English='Last Studied' Japanese='前回の学習' width='w-[45rem]' height='h-[25rem]'>
       <div className='h-[22rem] grid grid-cols-5 border-2 shadow-inner shadow-white border-dark-gray'>
         {activities.map((activity) => (
           <div

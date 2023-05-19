@@ -34,6 +34,8 @@ export function getColorForCategory(category: StudyCategory) {
       return 'watch-orange';
     case '読書':
       return 'read-pink';
+    case '書く':
+      return 'listen-yellow';
     default:
       return 'red-500';
   }
@@ -65,4 +67,11 @@ export function toHoursAndMinutes(totalMinutes: number) {
 
 export function formatJapaneseDate(date: string) {
   return format(parseISO(date), 'MMM do', { locale: ja });
+}
+
+export function sumArray(array: number[]) {
+  let sum = array.reduce((accumulator, currentvalue) => {
+    return accumulator + currentvalue;
+  }, 0);
+  return sum;
 }

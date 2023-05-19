@@ -27,4 +27,6 @@ export type WindowProps = { children: ReactNode; width: string; height: string }
 
 export type GameBubbleProps = StudyActivity;
 
-export type CalendarColumnProps = { date: string };
+export type CalendarColumnProps = { dateEng: string; dateJP: string };
+
+export type CalendarBubbleProps = { date: string; category: StudyCategory };

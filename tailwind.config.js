@@ -15,6 +15,7 @@ module.exports = {
         'read-pink': '#ec8ed1',
         'watch-orange': '#fd8248',
         'game-green': '#55ab59',
+        'write-yellow': '#decf02',
         'speak-blue': '#00879d',
         'gradient-1': '#cf614a',
         'gradient-2': '#f3d563',

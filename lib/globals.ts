@@ -7,6 +7,8 @@ const date = new Date();
 
 // for database queries
 export const TODAY_DB = format(date, 'yyyy-MM-dd');
+export const YESTERDAY_DB = format(subDays(date, 1), 'yyyy-MM-dd');
+export const DAY_BEFORE_YESTERDAY_DB = format(subDays(date, 2), 'yyyy-MM-dd');
 
 // for rendering dates
 export const TODAY_JP = format(date, 'EE MMM do', { locale: ja });
