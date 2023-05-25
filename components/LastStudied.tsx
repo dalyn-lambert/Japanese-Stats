@@ -4,6 +4,7 @@ import {
   getBarWidth,
   getColorForCategory,
   getIconForCategory,
+  getTimeSinceStudied,
   toHoursAndMinutes,
 } from '@/lib/utils';
 import Window from './Window';

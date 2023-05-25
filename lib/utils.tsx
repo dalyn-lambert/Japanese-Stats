@@ -56,12 +56,6 @@ export function getBarWidth(date: string) {
   const elapsedTime = formatDistance(parseISO(date), new Date());
   const splitTime = elapsedTime.split(' ');
   const days = Number(splitTime[0]);
-  // studied in the last week = solid bar
-  // > 7 days
-  // > 14
-  // > 21
-  // > 28
-
   if (days >= 28) {
     return '[4px]';
   } else if (days >= 21) {
