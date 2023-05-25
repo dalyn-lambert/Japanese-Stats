@@ -1,6 +1,6 @@
 import { getActivityForDate } from '@/lib/notion';
 import { CalendarBubbleProps, StudyCategory } from '@/lib/types';
-import { getColorForCategory, getIconForCategory, sumArray } from '@/lib/utils';
+import { getColorForCategory, getIconForCategory, sumArray, toHoursAndMinutes } from '@/lib/utils';
 
 const getData = async (date: string, category: StudyCategory) => {
   const activities = await getActivityForDate(date, category);
@@ -14,11 +14,11 @@ async function CalendarBubble(props: CalendarBubbleProps) {
   return (
     <div className='flex flex-col gap-2'>
       <div
-        className={`w-28 h-7 py-1 px-2 flex flex-row justify-between shrink-0 rounded-md text-sm text-white 
+        className={`w-32 h-7 py-1 px-2 flex flex-row justify-between shrink-0 rounded-md text-sm text-white 
         ${activities.length > 0 ? `bg-${getColorForCategory(props.category)}` : `bg-dark-gray`}`}
       >
         <span>{getIconForCategory(props.category)}</span>
-        <span>{totalTime > 0 && `${totalTime} mins`}</span>
+        <span>{totalTime > 0 && `${toHoursAndMinutes(totalTime)}`}</span>
       </div>
     </div>
   );

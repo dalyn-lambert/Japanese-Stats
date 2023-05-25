@@ -184,7 +184,7 @@ export const getRecentGameLogs = async () => {
         equals: 'ゲーム',
       },
     },
-    page_size: 5,
+    page_size: 10,
   });
   const pageResults = page.results;
 

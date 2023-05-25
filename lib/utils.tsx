@@ -62,7 +62,10 @@ export function getTimeSinceStudied(date: string) {
 export function toHoursAndMinutes(totalMinutes: number) {
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
-  return `${hours} hours and ${minutes} minutes`;
+  if (hours > 0) {
+    return `${hours} hrs ${minutes} mins`;
+  }
+  return `${minutes} mins`;
 }
 
 export function formatJapaneseDate(date: string) {

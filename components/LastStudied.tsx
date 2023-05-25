@@ -20,7 +20,7 @@ const LastStudied = async () => {
         {activities.map((activity) => (
           <div
             key={activity.id}
-            className='bg-windows-base border-r-2 border-dark-gray shadow-inner shadow-white  last:border-r-0 flex flex-col py-2 items-center text-center justify-between'
+            className='bg-windows-base border-r-2 border-dark-gray shadow-inner shadow-white last:border-r-0 flex flex-col py-2 items-center text-center justify-between'
           >
             <div className='flex flex-col h-32 justify-between items-center px-2'>
               <div className='flex flex-col gap-4'>
