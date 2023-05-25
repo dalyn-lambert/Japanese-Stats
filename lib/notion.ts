@@ -232,12 +232,11 @@ export const getMonthlyStats = async () => {
   return stats;
 };
 
-// something is wrong here, always returns 31
+// something is still wrong here
 export const getWritingDaysForMonth = async () => {
   const pageId = 'ee6f34d870254f5a99fc945bbb41b958';
   const response = await notion.pages.retrieve({ page_id: pageId });
   // @ts-ignore
   const days = response.properties['Current Month'].formula.number;
-  // console.log(days);
   return days;
 };

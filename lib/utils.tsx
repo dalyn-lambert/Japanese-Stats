@@ -41,7 +41,7 @@ export function getColorForCategory(category: StudyCategory) {
   }
 }
 
-export function getBarTypeForLastStudied(date: string) {
+export function getClassForLastStudied(date: string) {
   const elapsedTime = formatDistance(parseISO(date), new Date());
   const splitTime = elapsedTime.split(' ');
   const days = Number(splitTime[0]);
@@ -52,19 +52,24 @@ export function getBarTypeForLastStudied(date: string) {
   }
 }
 
-export function getBarWidth(date: string) {
+export function getBorderForActivity(date: string, category: StudyCategory) {
   const elapsedTime = formatDistance(parseISO(date), new Date());
   const splitTime = elapsedTime.split(' ');
   const days = Number(splitTime[0]);
   if (days >= 28) {
-    return '[4px]';
+    return `border-4 border-${getColorForCategory(category)}`;
   } else if (days >= 21) {
-    return '[8px]';
+    return `border-8 border-${getColorForCategory(category)}`;
   } else if (days >= 14) {
-    return '[12px]';
+    return `border-[12px] border-${getColorForCategory(category)}`;
   } else if (days >= 7) {
-    return '[16px]';
+    return `border-[16px] border-${getColorForCategory(category)}`;
   }
+  return 'border-0';
+}
+
+export function getBackgroundForActivity(category: StudyCategory) {
+  return `bg-${getColorForCategory(category)}`;
 }
 
 export function getTimeSinceStudied(date: string) {

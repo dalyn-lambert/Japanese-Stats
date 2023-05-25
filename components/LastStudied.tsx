@@ -1,8 +1,8 @@
 import { getLastGame, getLastListen, getLastRead, getLastSpeaking, getLastWatch } from '@/lib/notion';
 import {
-  getBarTypeForLastStudied,
-  getBarWidth,
-  getColorForCategory,
+  getBackgroundForActivity,
+  getBorderForActivity,
+  getClassForLastStudied,
   getIconForCategory,
   getTimeSinceStudied,
   toHoursAndMinutes,
@@ -32,7 +32,7 @@ const LastStudied = async () => {
             <div className='flex flex-col h-32 justify-between items-center px-2'>
               <div className='flex flex-col gap-4'>
                 <div className='text-sm'>{activity.title}</div>
-                <div className='text-xs'>{activity.media && `${activity.media}`}</div>
+                <div className='text-sm'>{activity.media && `${activity.media}`}</div>
               </div>
               <div className='text-sm border-b-2 border-dark-gray pb-1 w-24 text-center'>
                 {getTimeSinceStudied(activity.date)}
@@ -43,13 +43,13 @@ const LastStudied = async () => {
                 <div
                   className={`text-sm w-10 h-32 rounded-md 
                   ${
-                    getBarTypeForLastStudied(activity.date) === 'border'
-                      ? `border-${getBarWidth(activity.date)} border-${getColorForCategory(activity.category)}`
-                      : `bg-${getColorForCategory(activity.category)}`
+                    getClassForLastStudied(activity.date) === 'border'
+                      ? `${getBorderForActivity(activity.date, activity.category)}`
+                      : `${getBackgroundForActivity(activity.category)}`
                   }`}
                 ></div>
               </div>
-              <div className='text-sm'> {toHoursAndMinutes(activity.time)}</div>
+              <div className='text-sm'>{toHoursAndMinutes(activity.time)}</div>
               <div className='text-sm shrink-0 flex flex-row gap-1 items-center text-center'>
                 {getIconForCategory(activity.category)}
                 {activity.category}

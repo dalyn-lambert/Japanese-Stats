@@ -23,13 +23,11 @@ module.exports = {
     },
   },
   safelist: [
-    'bg-listen-purple',
-    'bg-read-pink',
-    'bg-watch-orange',
-    'bg-game-green',
-    'bg-speak-blue',
-    'bg-gradient-1',
-    'bg-gradient-2',
+    'border-4',
+    'border-8',
+    'border-12',
+    'border-[12px]',
+    'border-[16px]',
 
     'border-listen-purple',
     'border-read-pink',
@@ -38,6 +36,14 @@ module.exports = {
     'border-speak-blue',
     'border-gradient-1',
     'border-gradient-2',
+
+    'bg-listen-purple',
+    'bg-read-pink',
+    'bg-watch-orange',
+    'bg-game-green',
+    'bg-speak-blue',
+    'bg-gradient-1',
+    'bg-gradient-2',
   ],
   plugins: [],
 };
