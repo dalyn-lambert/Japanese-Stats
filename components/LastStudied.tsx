@@ -1,5 +1,11 @@
 import { getLastGame, getLastListen, getLastRead, getLastSpeaking, getLastWatch } from '@/lib/notion';
-import { getBarTypeForLastStudied, getColorForCategory, getIconForCategory, getTimeSinceStudied } from '@/lib/utils';
+import {
+  getBarTypeForLastStudied,
+  getBarWidth,
+  getColorForCategory,
+  getIconForCategory,
+  toHoursAndMinutes,
+} from '@/lib/utils';
 import Window from './Window';
 
 const getData = async () => {
@@ -37,12 +43,12 @@ const LastStudied = async () => {
                   className={`text-sm w-10 h-32 rounded-md 
                   ${
                     getBarTypeForLastStudied(activity.date) === 'border'
-                      ? `border-[6px] border-${getColorForCategory(activity.category)}`
+                      ? `border-${getBarWidth(activity.date)} border-${getColorForCategory(activity.category)}`
                       : `bg-${getColorForCategory(activity.category)}`
                   }`}
                 ></div>
               </div>
-              <div className='text-sm'>{`${activity.time} mins`}</div>
+              <div className='text-sm'> {toHoursAndMinutes(activity.time)}</div>
               <div className='text-sm shrink-0 flex flex-row gap-1 items-center text-center'>
                 {getIconForCategory(activity.category)}
                 {activity.category}

@@ -1,7 +1,7 @@
 import { StudyCategory } from '@/lib/types';
 import { format, formatDistance, parseISO } from 'date-fns';
 import { ja } from 'date-fns/locale';
-import { bookmarkIcon, gameIcon, headphonesIcon, pencilIcon, speechIcon, tvIcon } from './icons';
+import { bookmarkIcon, gameIcon, headphonesIcon, pencilIcon, speechIcon, watchIcon } from './icons';
 
 export function getIconForCategory(category: StudyCategory) {
   switch (category) {
@@ -12,7 +12,7 @@ export function getIconForCategory(category: StudyCategory) {
     case 'ゲーム':
       return gameIcon;
     case '観る':
-      return tvIcon;
+      return watchIcon;
     case '読書':
       return bookmarkIcon;
     case '書く':
@@ -49,6 +49,27 @@ export function getBarTypeForLastStudied(date: string) {
     return 'border';
   } else {
     return 'bg';
+  }
+}
+
+export function getBarWidth(date: string) {
+  const elapsedTime = formatDistance(parseISO(date), new Date());
+  const splitTime = elapsedTime.split(' ');
+  const days = Number(splitTime[0]);
+  // studied in the last week = solid bar
+  // > 7 days
+  // > 14
+  // > 21
+  // > 28
+
+  if (days >= 28) {
+    return '[4px]';
+  } else if (days >= 21) {
+    return '[8px]';
+  } else if (days >= 14) {
+    return '[12px]';
+  } else if (days >= 7) {
+    return '[16px]';
   }
 }
 
