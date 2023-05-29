@@ -21,9 +21,17 @@ export type MonthlyStats = {
   watching: number;
 };
 
+export type ProgressReport = {
+  id: string;
+  name: string;
+  type: string;
+  month: string;
+  status: string;
+};
+
 export type WindowTitleProps = { English: string; Japanese: string };
 
-export type WindowProps = { children: ReactNode; width: string; height: string } & WindowTitleProps;
+export type WindowProps = { children?: ReactNode; width: string; height: string } & WindowTitleProps;
 
 export type GameBubbleProps = StudyActivity;
 

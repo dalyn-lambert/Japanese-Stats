@@ -1,6 +1,6 @@
 import { Client } from '@notionhq/client';
 import { TODAY_DB } from './globals';
-import { MonthlyStats, StudyActivity, StudyCategory } from './types';
+import { MonthlyStats, ProgressReport, StudyActivity, StudyCategory } from './types';
 
 const notion = new Client({ auth: process.env.NOTION_KEY });
 
@@ -8,7 +8,7 @@ const studyTrackerDB = process.env.NOTION_STUDY_TRACKER_DATABASE_ID as string;
 const studyPostsDB = process.env.NOTION_STUDY_POSTS_DATABASE_ID as string;
 const habitsDB = process.env.NOTION_HABITS_DATABASE_ID as string;
 
-function getActivityDetails(pages: any) {
+function getActivityMetaData(pages: any) {
   const activities: StudyActivity[] = pages.map((page: any) => {
     return {
       id: page.id,
@@ -42,7 +42,7 @@ export const getTodaysStudies = async () => {
       ],
     },
   });
-  return getActivityDetails(pages.results);
+  return getActivityMetaData(pages.results);
 };
 
 export const getActivityForDate = async (date: string, category: StudyCategory) => {
@@ -65,9 +65,10 @@ export const getActivityForDate = async (date: string, category: StudyCategory) 
       ],
     },
   });
-  return getActivityDetails(pages.results);
+  return getActivityMetaData(pages.results);
 };
 
+// refactor these getLast functions into one that takes a category?
 export const getLastListen = async () => {
   const page = await notion.databases.query({
     database_id: studyTrackerDB,
@@ -85,7 +86,7 @@ export const getLastListen = async () => {
     },
     page_size: 1,
   });
-  return getActivityDetails(page.results);
+  return getActivityMetaData(page.results);
 };
 
 export const getLastRead = async () => {
@@ -105,7 +106,7 @@ export const getLastRead = async () => {
     },
     page_size: 1,
   });
-  return getActivityDetails(page.results);
+  return getActivityMetaData(page.results);
 };
 
 export const getLastWatch = async () => {
@@ -125,7 +126,7 @@ export const getLastWatch = async () => {
     },
     page_size: 1,
   });
-  return getActivityDetails(page.results);
+  return getActivityMetaData(page.results);
 };
 
 export const getLastGame = async () => {
@@ -145,7 +146,7 @@ export const getLastGame = async () => {
     },
     page_size: 1,
   });
-  return getActivityDetails(page.results);
+  return getActivityMetaData(page.results);
 };
 
 export const getRecentGameLogs = async () => {
@@ -165,7 +166,7 @@ export const getRecentGameLogs = async () => {
     },
     page_size: 10,
   });
-  return getActivityDetails(pages.results);
+  return getActivityMetaData(pages.results);
 };
 
 export const getLastSpeaking = async () => {
@@ -185,7 +186,7 @@ export const getLastSpeaking = async () => {
     },
     page_size: 1,
   });
-  return getActivityDetails(page.results);
+  return getActivityMetaData(page.results);
 };
 
 // probably don't need this and will get this info by summing Study Log Pages instead
@@ -232,11 +233,41 @@ export const getMonthlyStats = async () => {
   return stats;
 };
 
-// something is still wrong here
-export const getWritingDaysForMonth = async () => {
-  const pageId = 'ee6f34d870254f5a99fc945bbb41b958';
-  const response = await notion.pages.retrieve({ page_id: pageId });
-  // @ts-ignore
-  const days = response.properties['Current Month'].formula.number;
-  return days;
+export const getProgressReports = async () => {
+  const pages = await notion.databases.query({
+    database_id: studyPostsDB,
+    filter: {
+      and: [
+        {
+          property: 'Type',
+          select: {
+            equals: '2023 Progress Report',
+          },
+        },
+        {
+          property: 'Status',
+          // @ts-ignore
+          status: {
+            equals: 'Done',
+          },
+        },
+      ],
+    },
+  });
+  const allPages = pages.results;
+
+  const metaData: ProgressReport[] = allPages.map((page) => {
+    return {
+      id: page.id,
+      // @ts-ignore
+      month: page.properties.Month.select.name,
+      // @ts-ignore
+      name: page.properties.Name.title[0].plain_text,
+      // @ts-ignore
+      type: page.properties.Type.select.name,
+      // @ts-ignore
+      status: page.properties.Status.status.name,
+    };
+  });
+  return metaData;
 };
