@@ -9,7 +9,7 @@ const links: LinkData[] = [
 
 const TaskBar = async () => {
   return (
-    <div className='bg-dark-gray w-screen h-10 flex flex-row gap-4'>
+    <div className='bg-base-gray w-screen h-10 flex flex-row gap-4'>
       {links.map((link) => (
         <NavLink key={link.label} link={link} />
       ))}

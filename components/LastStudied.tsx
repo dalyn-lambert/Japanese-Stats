@@ -39,7 +39,7 @@ const LastStudied = async () => {
               </div>
             </div>
             <div className='flex flex-col gap-2 items-center text-center pt-2'>
-              <div className='flex flex-col flex-nowrap justify-end w-10 h-32 bg-dark-gray rounded-md'>
+              <div className='flex flex-col flex-nowrap justify-end w-10 h-32 bg-mid-gray rounded-md'>
                 <div
                   className={`text-sm w-10 h-32 rounded-md 
                   ${

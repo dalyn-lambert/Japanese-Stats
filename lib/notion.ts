@@ -271,3 +271,18 @@ export const getProgressReports = async () => {
   });
   return metaData;
 };
+
+export const getMonthDetails = async (id: string) => {
+  const page = await notion.pages.retrieve({ page_id: id });
+  return {
+    id: page.id,
+    // @ts-ignore
+    month: page.properties.Month.select.name,
+    // @ts-ignore
+    name: page.properties.Name.title[0].plain_text,
+    // @ts-ignore
+    type: page.properties.Type.select.name,
+    // @ts-ignore
+    status: page.properties.Status.status.name,
+  };
+};

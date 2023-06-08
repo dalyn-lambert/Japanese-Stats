@@ -1,5 +1,6 @@
 import Window from '@/components/Window';
 import { getProgressReports } from '@/lib/notion';
+import Link from 'next/link';
 
 const getData = async () => {
   const data = await getProgressReports();
@@ -11,11 +12,13 @@ export default async function Posts() {
   return (
     <div className='flex flex-row gap-2'>
       {posts.map((post) => (
-        <div key={post.id}>
-          <Window English='Blog' Japanese='ブログ' width='w-72' height='h-36'>
-            {post.name}
-          </Window>
-        </div>
+        <Link key={post.id} href={`/posts/${post.id}`}>
+          <div>
+            <Window English='Blog' Japanese='ブログ' width='w-72' height='h-36'>
+              {post.name}
+            </Window>
+          </div>
+        </Link>
       ))}
     </div>
   );
