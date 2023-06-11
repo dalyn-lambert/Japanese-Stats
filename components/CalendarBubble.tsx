@@ -9,8 +9,7 @@ const getData = async (date: string, category: StudyCategory) => {
 
 async function CalendarBubble(props: CalendarBubbleProps) {
   const activities = await getData(props.date, props.category);
-  const activitiesTimeArray = activities.map((activity) => activity.time);
-  const totalTime = sumArray(activitiesTimeArray);
+  const totalTime = sumArray(activities.map((activity) => activity.time));
   return (
     <div className='flex flex-col gap-2'>
       <div

@@ -69,7 +69,8 @@ export const getActivityForDate = async (date: string, category: StudyCategory) 
 };
 
 export const getActivityForMonth = async (start: string, end: string) => {
-  const pages = await notion.databases.query({
+  let results = [];
+  let data = await notion.databases.query({
     database_id: studyTrackerDB,
     filter: {
       and: [
@@ -88,7 +89,35 @@ export const getActivityForMonth = async (start: string, end: string) => {
       ],
     },
   });
-  return getActivityMetaData(pages.results);
+  results = [...data.results];
+
+  while (data.has_more) {
+    data = await notion.databases.query({
+      database_id: studyTrackerDB,
+      filter: {
+        and: [
+          {
+            property: 'Date',
+            date: {
+              on_or_after: start,
+            },
+          },
+          {
+            property: 'Date',
+            date: {
+              on_or_before: end,
+            },
+          },
+        ],
+      },
+      // changed api-endpoints.d.ts to allow null
+      start_cursor: data.next_cursor,
+    });
+
+    results = [...results, ...data.results];
+  }
+
+  return getActivityMetaData(results);
 };
 
 // refactor these getLast functions into one that takes a category?

@@ -29,6 +29,8 @@ export type ProgressReport = {
   status: string;
 };
 
+export type MonthIncludes = { date: { start: string; end: string } };
+
 export type WindowTitleProps = { English: string; Japanese: string };
 
 export type WindowProps = { children?: ReactNode; width: string; height: string } & WindowTitleProps;
