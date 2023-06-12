@@ -1,3 +1,4 @@
+import PostHeader from '@/components/PostHeader';
 import Window from '@/components/Window';
 import { getProgressReports } from '@/lib/notion';
 import Link from 'next/link';
@@ -14,8 +15,9 @@ export default async function Posts() {
       {posts.map((post) => (
         <Link key={post.id} href={`/posts/${post.id}`}>
           <div>
-            <Window English='Blog' Japanese='ブログ' width='w-72' height='h-36'>
-              {post.name}
+            <Window English='Blog' Japanese='ブログ' width='w-72' height='h-72'>
+              {/* @ts-expect-error Server Component */}
+              <PostHeader key={post.id} {...post} />
             </Window>
           </div>
         </Link>

@@ -1,4 +1,4 @@
-import MonthlyBarChart from '@/components/MonthlyBarChart';
+import MonthlyDonutChart from '@/components/MonthlyDonutChart';
 import { getMonthDetails } from '@/lib/notion';
 
 const getData = async (id: string) => {
@@ -13,7 +13,7 @@ export default async function Post({ params }: { params: { id: string } }) {
       {/* <MonthlyLogs date={data.date} /> */}
       {data.name}
       {/* @ts-expect-error Server Component */}
-      <MonthlyBarChart date={data.date} />
+      <MonthlyDonutChart date={data.date} />
     </div>
   );
 }

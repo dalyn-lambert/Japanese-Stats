@@ -1,4 +1,4 @@
-import { StudyCategory } from '@/lib/types';
+import { StudyActivity, StudyCategory } from '@/lib/types';
 import { format, formatDistance, parseISO } from 'date-fns';
 import { ja } from 'date-fns/locale';
 import { bookmarkIcon, gameIcon, headphonesIcon, pencilIcon, speechIcon, watchIcon } from './icons';
@@ -112,4 +112,10 @@ export function sumArray(array: number[]) {
     return accumulator + currentvalue;
   }, 0);
   return sum;
+}
+
+export function getTimeForCategory(category: StudyCategory, logs: StudyActivity[]) {
+  const filteredArray = logs.filter((log) => log.category === category);
+  const time = sumArray(filteredArray.map((activity) => activity.time));
+  return time;
 }

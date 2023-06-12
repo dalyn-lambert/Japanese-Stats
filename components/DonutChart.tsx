@@ -36,6 +36,7 @@ export default function DonutChart({ width, height, data }: DonutChartProps) {
               const arcFill = getColorForChart(category);
               return (
                 <g key={`arc-${category}-${index}`}>
+                  {/* changed type of d to allow null */}
                   <path d={arcPath} fill={arcFill} />
                 </g>
               );
