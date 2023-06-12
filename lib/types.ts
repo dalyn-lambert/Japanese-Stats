@@ -11,14 +11,12 @@ export type StudyActivity = {
   date: string;
 };
 
+export type StudyStat = { category: StudyCategory; time: number };
+
 export type MonthlyStats = {
   id: string;
   month: string;
-  listening: number;
-  reading: number;
-  speaking: number;
-  games: number;
-  watching: number;
+  stats: StudyStat[];
 };
 
 export type ProgressReport = {
@@ -40,3 +38,5 @@ export type GameBubbleProps = StudyActivity;
 export type CalendarColumnProps = { dateEng: string; dateJP: string };
 
 export type CalendarBubbleProps = { date: string; category: StudyCategory };
+
+export type DonutChartProps = { width: number; height: number; data: StudyStat[] };

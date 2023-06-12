@@ -1,7 +1,8 @@
 import { getActivityForMonth } from '@/lib/notion';
-import { MonthIncludes, StudyActivity, StudyCategory } from '@/lib/types';
-import { sumArray, toHoursAndMinutes } from '@/lib/utils';
+import { MonthIncludes, StudyActivity, StudyCategory, StudyStat } from '@/lib/types';
+import { sumArray } from '@/lib/utils';
 import { formatISO } from 'date-fns';
+import DonutChart from './DonutChart';
 import Window from './Window';
 
 const getData = async (dates: MonthIncludes) => {
@@ -14,18 +15,16 @@ const getData = async (dates: MonthIncludes) => {
 
 const MonthlyBarChart = async (dates: MonthIncludes) => {
   const logs = await getData(dates);
-  const listeningTime = toHoursAndMinutes(getTimeForCategory('聴く', logs));
-  const gameTime = toHoursAndMinutes(getTimeForCategory('ゲーム', logs));
-  const watchingTime = toHoursAndMinutes(getTimeForCategory('観る', logs));
-  const speakingTime = toHoursAndMinutes(getTimeForCategory('話す', logs));
-  const readingTime = toHoursAndMinutes(getTimeForCategory('読書', logs));
+  const monthlyStats: StudyStat[] = [
+    { category: '聴く', time: getTimeForCategory('聴く', logs) },
+    { category: 'ゲーム', time: getTimeForCategory('ゲーム', logs) },
+    { category: '観る', time: getTimeForCategory('観る', logs) },
+    { category: '話す', time: getTimeForCategory('話す', logs) },
+    { category: '読書', time: getTimeForCategory('読書', logs) },
+  ];
   return (
-    <Window English='Monthly Bar Chart' Japanese='Monthly Bar Chart' width='w-72' height='h-96'>
-      <div>listening time {listeningTime}</div>
-      <div>game time {gameTime}</div>
-      <div>watching time {watchingTime}</div>
-      <div>speaking time {speakingTime}</div>
-      <div>reading time {readingTime}</div>
+    <Window English='Monthly Bar Chart' Japanese='Monthly Bar Chart' width='w-96' height='h-96'>
+      <DonutChart width={300} height={300} data={monthlyStats} />
     </Window>
   );
 };

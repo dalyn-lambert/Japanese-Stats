@@ -34,8 +34,23 @@ export function getColorForCategory(category: StudyCategory) {
       return 'watch-orange';
     case '読書':
       return 'read-pink';
-    case '書く':
-      return 'listen-yellow';
+    default:
+      return 'red-500';
+  }
+}
+
+export function getColorForChart(category: StudyCategory) {
+  switch (category) {
+    case '話す':
+      return 'rgb(36, 123, 160)';
+    case '聴く':
+      return 'rgb(82, 72, 156)';
+    case 'ゲーム':
+      return 'rgb(117, 142, 79)';
+    case '観る':
+      return 'rgb(241, 154, 62)';
+    case '読書':
+      return 'rgb(206, 109, 139)';
     default:
       return 'red-500';
   }
