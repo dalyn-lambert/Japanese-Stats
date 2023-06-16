@@ -6,22 +6,20 @@ import TodayNotepad from '@/components/TodayNotepad';
 
 export default async function Home() {
   return (
-    <>
-      <div className='flex flex-row flex-wrap grow-0 p-2 gap-2'>
-        {/* https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}
-        {/* @ts-expect-error Server Component */}
-        <Calendar />
-        {/* @ts-expect-error Server Component */}
-        <TodayNotepad />
-        {/* @ts-expect-error Server Component */}
-        <MonthlyStats />
+    <div className='flex flex-row flex-wrap gap-2 p-2 justify-center'>
+      {/* https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}
+      {/* @ts-expect-error Server Component */}
+      <Calendar />
+      {/* @ts-expect-error Server Component */}
+      <TodayNotepad />
+      {/* @ts-expect-error Server Component */}
+      <MonthlyStats />
 
-        {/* <YearlyStats /> */}
-        {/* @ts-expect-error Server Component */}
-        <LastStudied />
-        {/* @ts-expect-error Server Component */}
-        <GameLog />
-      </div>
-    </>
+      {/* <YearlyStats /> */}
+      {/* @ts-expect-error Server Component */}
+      <LastStudied />
+      {/* @ts-expect-error Server Component */}
+      <GameLog />
+    </div>
   );
 }

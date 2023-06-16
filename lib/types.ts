@@ -23,8 +23,7 @@ export type ProgressReport = {
   id: string;
   name: string;
   type: string;
-  month: string;
-  status: string;
+  date: string;
 };
 
 export type MonthIncludes = { date: { start: string; end: string } };

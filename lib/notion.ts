@@ -1,12 +1,11 @@
 import { Client } from '@notionhq/client';
 import { TODAY_DB } from './globals';
-import { MonthlyStats, ProgressReport, StudyActivity, StudyCategory } from './types';
+import { ProgressReport, StudyActivity, StudyCategory } from './types';
 
 const notion = new Client({ auth: process.env.NOTION_KEY });
 
 const studyTrackerDB = process.env.NOTION_STUDY_TRACKER_DATABASE_ID as string;
 const studyPostsDB = process.env.NOTION_STUDY_POSTS_DATABASE_ID as string;
-const habitsDB = process.env.NOTION_HABITS_DATABASE_ID as string;
 
 function getActivityMetaData(pages: any) {
   const activities: StudyActivity[] = pages.map((page: any) => {
@@ -293,50 +292,7 @@ export const getLastSpeaking = async () => {
   return getActivityMetaData(page.results);
 };
 
-// probably don't need this and will get this info by summing Study Log Pages instead
-export const getMonthlyStats = async () => {
-  const pages = await notion.databases.query({
-    database_id: studyPostsDB,
-    filter: {
-      and: [
-        {
-          property: 'Type',
-          select: {
-            equals: '2023 Progress Report',
-          },
-        },
-        {
-          property: 'Status',
-          // @ts-ignore
-          status: {
-            equals: 'Done',
-          },
-        },
-      ],
-    },
-  });
-  const allPages = pages.results;
-
-  const stats: MonthlyStats[] = allPages.map((page) => {
-    return {
-      id: page.id,
-      // @ts-ignore
-      month: page.properties.Month.select.name,
-      // @ts-ignore
-      reading: page.properties['Reading (minutes)'].number,
-      // @ts-ignore
-      listening: page.properties['Listening (minutes)'].number,
-      // @ts-ignore
-      watching: page.properties['Watching (minutes)'].number,
-      // @ts-ignore
-      speaking: page.properties['Speaking (minutes)'].number,
-      // @ts-ignore
-      games: page.properties['Games (minutes)'].number,
-    };
-  });
-  return stats;
-};
-
+// combine these two functions? re examine this flow
 export const getProgressReports = async () => {
   const pages = await notion.databases.query({
     database_id: studyPostsDB,
@@ -345,18 +301,12 @@ export const getProgressReports = async () => {
         {
           property: 'Type',
           select: {
-            equals: '2023 Progress Report',
-          },
-        },
-        {
-          property: 'Status',
-          // @ts-ignore
-          status: {
-            equals: 'Done',
+            equals: 'Progress Report',
           },
         },
       ],
     },
+    sorts: [{ property: 'Date', direction: 'descending' }],
   });
   const allPages = pages.results;
 
@@ -364,13 +314,11 @@ export const getProgressReports = async () => {
     return {
       id: page.id,
       // @ts-ignore
-      month: page.properties.Month.select.name,
-      // @ts-ignore
       name: page.properties.Name.title[0].plain_text,
       // @ts-ignore
       type: page.properties.Type.select.name,
       // @ts-ignore
-      status: page.properties.Status.status.name,
+      date: page.properties.Date.date,
     };
   });
   return metaData;
@@ -381,14 +329,8 @@ export const getMonthDetails = async (id: string) => {
   return {
     id: page.id,
     // @ts-ignore
-    month: page.properties.Month.select.name,
+    // name: page.properties.Name.title[0].plain_text,
     // @ts-ignore
     date: page.properties.Date.date,
-    // @ts-ignore
-    name: page.properties.Name.title[0].plain_text,
-    // @ts-ignore
-    type: page.properties.Type.select.name,
-    // @ts-ignore
-    status: page.properties.Status.status.name,
   };
 };

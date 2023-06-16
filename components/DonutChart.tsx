@@ -6,17 +6,17 @@ import { Pie } from '@visx/shape';
 export default function DonutChart({ width, height, data }: DonutChartProps) {
   const getTime = (d: StudyStat) => d.time;
 
-  const defaultMargin = { top: 10, right: 10, bottom: 10, left: 10 };
+  // const defaultMargin = { top: 10, right: 10, bottom: 10, left: 10 };
 
-  const innerWidth = width - defaultMargin.left - defaultMargin.right;
-  const innerHeight = height - defaultMargin.top - defaultMargin.bottom;
+  // const innerWidth = width - defaultMargin.left - defaultMargin.right;
+  // const innerHeight = height - defaultMargin.top - defaultMargin.bottom;
 
-  const centerY = innerHeight / 2;
-  const centerX = innerWidth / 2;
-  const radius = Math.min(innerWidth, innerHeight) / 2;
-  const top = centerY + defaultMargin.top;
-  const left = centerX + defaultMargin.left;
-  const donutThickness = 50;
+  const centerY = height / 2;
+  const centerX = width / 2;
+  const radius = Math.min(width, height) / 2;
+  const top = centerY;
+  const left = centerX;
+  const donutThickness = 10;
 
   return (
     <svg width={width} height={height}>
@@ -24,6 +24,8 @@ export default function DonutChart({ width, height, data }: DonutChartProps) {
         <Pie
           data={data}
           pieValue={getTime}
+          pieSort={null}
+          pieSortValues={null}
           outerRadius={radius}
           innerRadius={radius - donutThickness}
           cornerRadius={3}
