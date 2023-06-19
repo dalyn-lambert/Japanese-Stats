@@ -3,6 +3,7 @@ import GameLog from '@/components/GameLog';
 import LastStudied from '@/components/LastStudied';
 import MonthlyStats from '@/components/MonthlyStats';
 import TodayNotepad from '@/components/TodayNotepad';
+import YearlyStats from '@/components/YearlyStats';
 
 export default async function Home() {
   return (
@@ -14,8 +15,8 @@ export default async function Home() {
       <TodayNotepad />
       {/* @ts-expect-error Server Component */}
       <MonthlyStats />
-
-      {/* <YearlyStats /> */}
+      {/* @ts-expect-error Server Component */}
+      <YearlyStats />
       {/* @ts-expect-error Server Component */}
       <LastStudied />
       {/* @ts-expect-error Server Component */}
