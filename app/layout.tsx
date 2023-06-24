@@ -10,11 +10,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en'>
       <body className='bg-background'>
-        {children}
-        <div className='fixed bottom-0'>
+        <div className='sticky top-0'>
           {/* @ts-expect-error Server Component */}
           <TaskBar />
         </div>
+        {children}
       </body>
     </html>
   );

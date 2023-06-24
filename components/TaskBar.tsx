@@ -1,4 +1,5 @@
 import NavLink from './NavLink';
+import Window from './Window';
 
 export type LinkData = { label: string; route: string };
 
@@ -9,9 +10,11 @@ const links: LinkData[] = [
 
 const TaskBar = async () => {
   return (
-    <div className='bg-base-gray w-screen h-10 flex flex-row gap-4'>
+    <div className='flex flex-col gap-4'>
       {links.map((link) => (
-        <NavLink key={link.label} link={link} />
+        <Window key={link.label} English='' Japanese='' width='w-32' height='h-32'>
+          <NavLink link={link} />
+        </Window>
       ))}
     </div>
   );

@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: '#00787f',
+        background: '#66679f',
         'base-gray': '#B7B6C1',
         'mid-gray': '#9291A1',
         'dark-gray': '#5A5353',
@@ -18,8 +18,8 @@ module.exports = {
         'game-green': '#758E4F',
         'write-yellow': '#decf02',
         'speak-blue': '#247BA0',
-        'gradient-1': '#43576c',
-        'gradient-2': '#5d7896',
+        'gradient-1': '#3EB488',
+        'gradient-2': '#AAF0D0',
       },
     },
   },

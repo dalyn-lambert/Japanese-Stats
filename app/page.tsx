@@ -7,7 +7,7 @@ import YearlyStats from '@/components/YearlyStats';
 
 export default async function Home() {
   return (
-    <div className='flex flex-row flex-wrap gap-2 p-2 justify-center'>
+    <div className='flex flex-row flex-wrap gap-2 pl-14 p-2 justify-center'>
       {/* https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}
       {/* @ts-expect-error Server Component */}
       <Calendar />
@@ -16,7 +16,7 @@ export default async function Home() {
       {/* @ts-expect-error Server Component */}
       <MonthlyStats />
       {/* @ts-expect-error Server Component */}
-      <YearlyStats />
+      {/* <YearlyStats /> */}
       {/* @ts-expect-error Server Component */}
       <LastStudied />
       {/* @ts-expect-error Server Component */}
