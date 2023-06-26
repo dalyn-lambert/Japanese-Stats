@@ -11,7 +11,7 @@ const getData = async () => {
 export default async function Posts() {
   const posts = await getData();
   return (
-    <div className='flex flex-row flex-wrap gap-4 p-2 justify-center pb-8'>
+    <div className='flex flex-row flex-wrap gap-4 pt-2 justify-center'>
       {posts.map((post) => (
         <Link key={post.id} href={`/posts/${post.id}`}>
           <div>

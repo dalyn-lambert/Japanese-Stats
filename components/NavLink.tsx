@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LinkData } from './TaskBar';
+import Window from './Window';
 
 type NavLinkProps = { link: LinkData };
 
@@ -18,9 +19,14 @@ const NavLink = ({ link }: NavLinkProps) => {
   return (
     <Link
       href={link.route}
-      className={clsx('text-black text-2xl tracking-widest hover:text-red', isActive && 'text-red font-bold')}
+      className={clsx(
+        'text-black text-2xl tracking-widest text-center hover:text-gradient-1',
+        isActive && 'text-gradient-1 font-bold'
+      )}
     >
-      {link.label}
+      <Window key={link.label} English='' Japanese='' width='w-36' height='h-36'>
+        {link.label}
+      </Window>
     </Link>
   );
 };

@@ -9,7 +9,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en'>
-      <body className='bg-background'>
+      <body className='bg-background flex flex-row'>
         <div className='sticky top-0'>
           {/* @ts-expect-error Server Component */}
           <TaskBar />
