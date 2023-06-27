@@ -171,8 +171,7 @@ export const getActivityForYear = async (start: string, end: string) => {
   return getActivityMetaData(results);
 };
 
-// refactor these getLast functions into one that takes a category?
-export const getLastListen = async () => {
+export const getLastActivityForCategory = async (category: StudyCategory) => {
   const page = await notion.databases.query({
     database_id: studyTrackerDB,
     sorts: [
@@ -184,67 +183,7 @@ export const getLastListen = async () => {
     filter: {
       property: 'Category',
       select: {
-        equals: '聴く',
-      },
-    },
-    page_size: 1,
-  });
-  return getActivityMetaData(page.results);
-};
-
-export const getLastRead = async () => {
-  const page = await notion.databases.query({
-    database_id: studyTrackerDB,
-    sorts: [
-      {
-        property: 'Date',
-        direction: 'descending',
-      },
-    ],
-    filter: {
-      property: 'Category',
-      select: {
-        equals: '読書',
-      },
-    },
-    page_size: 1,
-  });
-  return getActivityMetaData(page.results);
-};
-
-export const getLastWatch = async () => {
-  const page = await notion.databases.query({
-    database_id: studyTrackerDB,
-    sorts: [
-      {
-        property: 'Date',
-        direction: 'descending',
-      },
-    ],
-    filter: {
-      property: 'Category',
-      select: {
-        equals: '観る',
-      },
-    },
-    page_size: 1,
-  });
-  return getActivityMetaData(page.results);
-};
-
-export const getLastGame = async () => {
-  const page = await notion.databases.query({
-    database_id: studyTrackerDB,
-    sorts: [
-      {
-        property: 'Date',
-        direction: 'descending',
-      },
-    ],
-    filter: {
-      property: 'Category',
-      select: {
-        equals: 'ゲーム',
+        equals: category,
       },
     },
     page_size: 1,
@@ -270,26 +209,6 @@ export const getRecentGameLogs = async () => {
     page_size: 10,
   });
   return getActivityMetaData(pages.results);
-};
-
-export const getLastSpeaking = async () => {
-  const page = await notion.databases.query({
-    database_id: studyTrackerDB,
-    sorts: [
-      {
-        property: 'Date',
-        direction: 'descending',
-      },
-    ],
-    filter: {
-      property: 'Category',
-      select: {
-        equals: '話す',
-      },
-    },
-    page_size: 1,
-  });
-  return getActivityMetaData(page.results);
 };
 
 // combine these two functions? re examine this flow

@@ -1,4 +1,4 @@
-import { getLastGame, getLastListen, getLastRead, getLastSpeaking, getLastWatch } from '@/lib/notion';
+import { getLastActivityForCategory } from '@/lib/notion';
 import {
   getBackgroundForActivity,
   getBorderForActivity,
@@ -11,11 +11,11 @@ import Window from './Window';
 
 const getData = async () => {
   // destructure the arrays we get back from the maps
-  const [listen] = await getLastListen();
-  const [read] = await getLastRead();
-  const [watch] = await getLastWatch();
-  const [game] = await getLastGame();
-  const [speak] = await getLastSpeaking();
+  const [listen] = await getLastActivityForCategory('聴く');
+  const [read] = await getLastActivityForCategory('読書');
+  const [watch] = await getLastActivityForCategory('観る');
+  const [game] = await getLastActivityForCategory('ゲーム');
+  const [speak] = await getLastActivityForCategory('話す');
   return [listen, read, watch, game, speak];
 };
 
