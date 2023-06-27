@@ -99,8 +99,8 @@ export function toHoursAndMinutes(totalMinutes: number) {
   const minutes = totalMinutes % 60;
   if (hours > 0) {
     if (minutes > 0) {
-      return `${hours} hrs ${minutes} mins`;
-    } else return `${hours} hrs`;
+      return `${hours} ${hours === 1 ? 'hr' : 'hrs'} ${minutes} mins`;
+    } else return `${hours} ${hours === 1 ? 'hr' : 'hrs'}`;
   }
   return `${minutes} mins`;
 }
