@@ -1,6 +1,6 @@
 import { getActivityForYear } from '@/lib/notion';
 import { StudyStat } from '@/lib/types';
-import { getTimeForCategory } from '@/lib/utils';
+import { getTimeForCategory, sumArray } from '@/lib/utils';
 import { formatISO } from 'date-fns';
 import DonutChart from './DonutChart';
 import Window from './Window';
@@ -19,6 +19,7 @@ const YearlyStats = async () => {
     { category: '話す', time: getTimeForCategory('話す', data) },
     { category: '読書', time: getTimeForCategory('読書', data) },
   ];
+  // const totalTime = sumArray(yearlyStats);
   return (
     <Window English='Study Time by Year' Japanese='年の勉強' width='w-96' height='h-96'>
       <DonutChart width={300} height={300} data={yearlyStats} />

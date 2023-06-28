@@ -18,7 +18,7 @@ export default async function Home() {
       {/* @ts-expect-error Server Component */}
       <MonthlyStats />
       {/* @ts-expect-error Server Component */}
-      {/* <YearlyStats /> */}
+      <YearlyStats />
       {/* @ts-expect-error Server Component */}
       <LastStudied />
     </div>
