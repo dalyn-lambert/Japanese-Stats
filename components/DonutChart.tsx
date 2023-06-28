@@ -3,7 +3,7 @@ import { getColorForChart } from '@/lib/utils';
 import { Group } from '@visx/group';
 import { Pie } from '@visx/shape';
 
-export default function DonutChart({ width, height, data }: DonutChartProps) {
+export default function DonutChart({ width, height, data, donutThickness }: DonutChartProps) {
   const getTime = (d: StudyStat) => d.time;
 
   // const defaultMargin = { top: 10, right: 10, bottom: 10, left: 10 };
@@ -16,7 +16,7 @@ export default function DonutChart({ width, height, data }: DonutChartProps) {
   const radius = Math.min(width, height) / 2;
   const top = centerY;
   const left = centerX;
-  const donutThickness = 10;
+
 
   return (
     <svg width={width} height={height}>

@@ -38,4 +38,4 @@ export type CalendarColumnProps = { dateEng: string; dateJP: string };
 
 export type CalendarBubbleProps = { date: string; category: StudyCategory };
 
-export type DonutChartProps = { width: number; height: number; data: StudyStat[] };
+export type DonutChartProps = { width: number; height: number; donutThickness: number; data: StudyStat[] };

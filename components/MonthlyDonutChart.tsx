@@ -24,7 +24,7 @@ const MonthlyDonutChart = async (dates: MonthIncludes) => {
   ];
   return (
     <Window English='Monthly Bar Chart' Japanese='Monthly Bar Chart' width='w-96' height='h-96'>
-      <DonutChart width={300} height={300} data={monthlyStats} />
+      <DonutChart width={300} height={300} data={monthlyStats} donutThickness={10} />
     </Window>
   );
 };

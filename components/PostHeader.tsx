@@ -27,7 +27,7 @@ const PostHeader = async (props: ProgressReport) => {
   ];
   return (
     <div className='group flex flex-row gap-8 justify-center items-center'>
-      <DonutChart width={150} height={150} data={monthlyStats} />
+      <DonutChart width={150} height={150} data={monthlyStats} donutThickness={10} />
       <div className='flex flex-col gap-2'>
         <div className='text-lg'>{props.name}</div>
         <button className='bg-gradient-1 group-hover:bg-gradient-2 text-white rounded-sm'>読む</button>
