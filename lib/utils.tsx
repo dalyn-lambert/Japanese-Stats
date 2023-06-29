@@ -100,7 +100,7 @@ export function toHoursAndMinutes(totalMinutes: number) {
   if (hours > 0) {
     if (minutes > 0) {
       return `${hours} ${hours === 1 ? 'hr' : 'hrs'} ${minutes} mins`;
-    } else return `${hours} ${hours === 1 ? 'hr' : 'hrs'}`;
+    } else return `${hours} ${hours === 1 ? 'hour' : 'hours'}`;
   }
   return `${minutes} mins`;
 }
