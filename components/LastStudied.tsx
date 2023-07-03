@@ -27,9 +27,9 @@ const LastStudied = async () => {
         {activities.map((activity) => (
           <div
             key={activity.id}
-            className=' bg-windows-base border-r-2 border-dark-gray shadow-inner shadow-white last:border-r-0 flex flex-col py-2 items-center text-center justify-between'
+            className='text-sm bg-windows-base border-r-2 border-dark-gray shadow-inner shadow-white last:border-r-0 flex flex-col py-2 items-center text-center justify-between'
           >
-            <div className='text-sm flex flex-col h-32 justify-between items-center px-2 gap-2'>
+            <div className='flex flex-col h-32 justify-between items-center px-2 gap-2'>
               <span className='line-clamp-1'>{activity.title}</span>
               <span className='line-clamp-1'>{activity.media}</span>
               <span className='border-b-2 border-dark-gray pb-1 w-[8rem] text-center'>
@@ -39,7 +39,7 @@ const LastStudied = async () => {
             <div className='flex flex-col gap-2 items-center text-center pt-2'>
               <div className='flex flex-col flex-nowrap justify-end w-10 h-32 bg-mid-gray rounded-md'>
                 <div
-                  className={`text-sm w-10 h-32 rounded-md 
+                  className={`w-10 h-32 rounded-md 
                   ${
                     getClassForLastStudied(activity.date) === 'border'
                       ? `${getBorderForActivity(activity.date, activity.category)}`
@@ -47,7 +47,7 @@ const LastStudied = async () => {
                   }`}
                 ></div>
               </div>
-              <span>{toHoursAndMinutes(activity.time)}</span>
+              <span className=''>{toHoursAndMinutes(activity.time)}</span>
               <span className='shrink-0 flex flex-row gap-1 items-center text-center'>
                 {getIconForCategory(activity.category)}
                 {activity.category}

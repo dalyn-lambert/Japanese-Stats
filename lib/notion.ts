@@ -44,6 +44,24 @@ export const getTodaysStudies = async () => {
   return getActivityMetaData(pages.results);
 };
 
+export const getStudyTimeForDate = async (date: string) => {
+  const pages = await notion.databases.query({
+    database_id: studyTrackerDB,
+    filter: {
+      and: [
+        {
+          property: 'Date',
+          date: {
+            equals: date,
+          },
+        },
+        { property: 'Time (mins)', number: { does_not_equal: 0 } },
+      ],
+    },
+  });
+  return getActivityMetaData(pages.results);
+};
+
 export const getActivityForDateAndCategory = async (date: string, category: StudyCategory) => {
   const pages = await notion.databases.query({
     database_id: studyTrackerDB,
