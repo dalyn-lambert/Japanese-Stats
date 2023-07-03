@@ -1,5 +1,5 @@
 import { StudyActivity, StudyCategory } from '@/lib/types';
-import { format, formatDistance, parseISO } from 'date-fns';
+import { format, formatDistance, intervalToDuration, parseISO } from 'date-fns';
 import { ja } from 'date-fns/locale';
 import { bookmarkIcon, gameIcon, headphonesIcon, pencilIcon, speechIcon, watchIcon } from './icons';
 
@@ -57,27 +57,25 @@ export function getColorForChart(category: StudyCategory) {
 }
 
 export function getClassForLastStudied(date: string) {
-  const elapsedTime = formatDistance(parseISO(date), new Date());
-  const splitTime = elapsedTime.split(' ');
-  const days = Number(splitTime[0]);
-  if (days > 7) {
+  // edited type for Duration from intervalToDuration function
+  // to say that all values will be defined
+  const elapsedTime = intervalToDuration({ start: parseISO(date), end: new Date() });
+  if (elapsedTime.months !== 0) {
     return 'border';
-  } else {
-    return 'bg';
-  }
+  } else if (elapsedTime.days > 7) {
+    return 'border';
+  } else return 'bg';
 }
 
 export function getBorderForActivity(date: string, category: StudyCategory) {
-  const elapsedTime = formatDistance(parseISO(date), new Date());
-  const splitTime = elapsedTime.split(' ');
-  const days = Number(splitTime[0]);
-  if (days >= 28) {
+  const elapsedTime = intervalToDuration({ start: parseISO(date), end: new Date() });
+  if (elapsedTime.months > 0) {
     return `border-4 border-${getColorForCategory(category)}`;
-  } else if (days >= 21) {
+  } else if (elapsedTime.days >= 21) {
     return `border-8 border-${getColorForCategory(category)}`;
-  } else if (days >= 14) {
+  } else if (elapsedTime.days >= 14) {
     return `border-[12px] border-${getColorForCategory(category)}`;
-  } else if (days >= 7) {
+  } else if (elapsedTime.days >= 7) {
     return `border-[16px] border-${getColorForCategory(category)}`;
   }
   return 'border-0';
