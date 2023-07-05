@@ -19,14 +19,16 @@ export type MonthlyStats = {
   stats: StudyStat[];
 };
 
+export type MonthIncludes = {
+  start: string;
+  end: string;
+};
+
 export type ProgressReport = {
   id: string;
   name: string;
-  type: string;
-  date: string;
+  dates: MonthIncludes;
 };
-
-export type MonthIncludes = { date: { start: string; end: string } };
 
 export type WindowTitleProps = { English: string; Japanese: string };
 

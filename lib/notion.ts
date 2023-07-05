@@ -229,8 +229,7 @@ export const getRecentGameLogs = async () => {
   return getActivityMetaData(pages.results);
 };
 
-// combine these two functions? re examine this flow
-export const getProgressReports = async () => {
+export const getAllProgressReports = async () => {
   const pages = await notion.databases.query({
     database_id: studyPostsDB,
     filter: {
@@ -253,21 +252,21 @@ export const getProgressReports = async () => {
       // @ts-ignore
       name: page.properties.Name.title[0].plain_text,
       // @ts-ignore
-      type: page.properties.Type.select.name,
-      // @ts-ignore
-      date: page.properties.Date.date,
+      dates: page.properties.Date.date,
     };
   });
   return metaData;
 };
 
-export const getMonthDetails = async (id: string) => {
+export const getDetailsForMonth = async (id: string) => {
   const page = await notion.pages.retrieve({ page_id: id });
   return {
     id: page.id,
     // @ts-ignore
-    // name: page.properties.Name.title[0].plain_text,
+    name: page.properties.Name.title[0].plain_text,
     // @ts-ignore
     date: page.properties.Date.date,
+    // @ts-ignore
+    wins: page.properties.Wins.rich_text[0].plain_text
   };
 };

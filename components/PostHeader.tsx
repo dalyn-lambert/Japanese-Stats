@@ -1,22 +1,16 @@
-import { getActivityForMonth, getMonthDetails } from '@/lib/notion';
-import { ProgressReport, StudyStat } from '@/lib/types';
+import { getActivityForMonth } from '@/lib/notion';
+import { MonthIncludes, ProgressReport, StudyStat } from '@/lib/types';
 import { getTimeForCategory } from '@/lib/utils';
 import { formatISO } from 'date-fns';
 import DonutChart from './DonutChart';
 
-const getTime = async (dates: { start: string; end: string }) => {
+const getTime = async (dates: MonthIncludes) => {
   const activities = await getActivityForMonth(formatISO(new Date(dates.start)), formatISO(new Date(dates.end)));
   return activities;
 };
 
-const getDates = async (id: string) => {
-  const data = await getMonthDetails(id);
-  return data;
-};
-
 const PostHeader = async (props: ProgressReport) => {
-  const dates = await getDates(props.id);
-  const data = await getTime(dates.date);
+  const data = await getTime(props.dates);
 
   const monthlyStats: StudyStat[] = [
     { category: '聴く', time: getTimeForCategory('聴く', data) },

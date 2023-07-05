@@ -1,10 +1,10 @@
 import PostHeader from '@/components/PostHeader';
 import Window from '@/components/Window';
-import { getProgressReports } from '@/lib/notion';
+import { getAllProgressReports } from '@/lib/notion';
 import Link from 'next/link';
 
 const getData = async () => {
-  const data = await getProgressReports();
+  const data = await getAllProgressReports();
   return data;
 };
 
