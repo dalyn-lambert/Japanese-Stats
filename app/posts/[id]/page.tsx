@@ -13,7 +13,7 @@ export default async function Post({ params }: { params: { id: string } }) {
     <div className='flex flex-row flex-wrap grow-0 p-2 gap-2'>
       {/* <MonthlyLogs date={data.date} /> */}
       {/* @ts-expect-error Server Component */}
-      <MonthlyWins wins={data.wins} />
+      <MonthlyWins {...data} />
       {/* @ts-expect-error Server Component */}
       <MonthlyDonutChart date={data.date} />
     </div>

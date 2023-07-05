@@ -267,6 +267,15 @@ export const getDetailsForMonth = async (id: string) => {
     // @ts-ignore
     date: page.properties.Date.date,
     // @ts-ignore
-    wins: page.properties.Wins.rich_text[0].plain_text
+    wins: page.properties.Wins.relation,
+  };
+};
+
+export const getWinFromId = async (id: string) => {
+  const page = await notion.pages.retrieve({ page_id: id });
+  return {
+    id: page.id,
+    // @ts-ignore
+    name: page.properties.Name.title[0].plain_text,
   };
 };
