@@ -17,7 +17,7 @@ export default async function Posts() {
           <div>
             <Window English='Blog' Japanese='ブログ' width='w-96' height='h-52'>
               {/* @ts-expect-error Server Component */}
-              <PostHeader key={post.id} {...post} />
+              <PostHeader key={post.id} date={post.date} title={post.title} />
             </Window>
           </div>
         </Link>

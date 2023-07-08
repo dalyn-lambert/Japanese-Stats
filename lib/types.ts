@@ -22,14 +22,15 @@ export type MonthlyStats = {
 export type MonthIncludes = {
   start: string;
   end: string;
+  time_zone?: null;
 };
 
 export type Win = { id: string };
 
 export type ProgressReport = {
   id: string;
-  name: string;
-  dates: MonthIncludes;
+  title: string;
+  date: MonthIncludes;
   wins: Win[];
   summary: string;
 };

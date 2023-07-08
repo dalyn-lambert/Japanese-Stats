@@ -1,4 +1,5 @@
 import MonthlyDonutChart from '@/components/MonthlyDonutChart';
+import MonthlyHeader from '@/components/MonthlyHeader';
 import MonthlySummary from '@/components/MonthlySummary';
 import MonthlyWins from '@/components/MonthlyWins';
 import { getDetailsForMonth } from '@/lib/notion';
@@ -12,6 +13,8 @@ export default async function Post({ params }: { params: { id: string } }) {
   const data = await getData(params.id);
   return (
     <div className='flex flex-row flex-wrap grow-0 p-2 gap-2'>
+      {/* @ts-expect-error Server Component */}
+      <MonthlyHeader title={data.title} />
       {/* <MonthlyLogs date={data.date} /> */}
       {/* @ts-expect-error Server Component */}
       <MonthlyWins wins={data.wins} />

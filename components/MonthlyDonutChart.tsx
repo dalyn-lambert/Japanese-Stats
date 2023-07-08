@@ -5,16 +5,13 @@ import { formatISO } from 'date-fns';
 import DonutChart from './DonutChart';
 import Window from './Window';
 
-const getData = async (dates: MonthIncludes) => {
-  const activities = await getActivityForMonth(
-    formatISO(new Date(dates.date.start)),
-    formatISO(new Date(dates.date.end))
-  );
+const getData = async (date: MonthIncludes) => {
+  const activities = await getActivityForMonth(formatISO(new Date(date.start)), formatISO(new Date(date.end)));
   return activities;
 };
 
-const MonthlyDonutChart = async (dates: MonthIncludes) => {
-  const data = await getData(dates);
+const MonthlyDonutChart = async ({ date }: { date: MonthIncludes }) => {
+  const data = await getData(date);
   const monthlyStats: StudyStat[] = [
     { category: '聴く', time: getTimeForCategory('聴く', data) },
     { category: 'ゲーム', time: getTimeForCategory('ゲーム', data) },
@@ -23,8 +20,8 @@ const MonthlyDonutChart = async (dates: MonthIncludes) => {
     { category: '読書', time: getTimeForCategory('読書', data) },
   ];
   return (
-    <Window English='Monthly Bar Chart' Japanese='Monthly Bar Chart' width='w-96' height='h-96'>
-      <DonutChart width={300} height={300} data={monthlyStats} donutThickness={10} />
+    <Window English='Monthly Donut Chart' Japanese='Monthly Donut Chart' width='w-96' height='h-96'>
+      <DonutChart width={300} height={300} data={monthlyStats} donutThickness={30} />
     </Window>
   );
 };

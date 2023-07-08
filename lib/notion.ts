@@ -250,9 +250,9 @@ export const getAllProgressReports = async () => {
     return {
       id: page.id,
       // @ts-ignore
-      name: page.properties.Name.title[0].plain_text,
+      title: page.properties.Name.title[0].plain_text,
       // @ts-ignore
-      dates: page.properties.Date.date,
+      date: page.properties.Date.date,
       // @ts-ignore
       wins: page.properties.Wins.relation,
       // @ts-ignore
@@ -267,7 +267,7 @@ export const getDetailsForMonth = async (id: string) => {
   const metaData: ProgressReport = {
     id: page.id,
     // @ts-ignore
-    name: page.properties.Name.title[0].plain_text,
+    title: page.properties.Name.title[0].plain_text,
     // @ts-ignore
     date: page.properties.Date.date,
     // @ts-ignore
