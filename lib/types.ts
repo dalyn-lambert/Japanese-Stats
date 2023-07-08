@@ -24,10 +24,14 @@ export type MonthIncludes = {
   end: string;
 };
 
+export type Win = { id: string };
+
 export type ProgressReport = {
   id: string;
   name: string;
   dates: MonthIncludes;
+  wins: Win[];
+  summary: string;
 };
 
 export type WindowTitleProps = { English: string; Japanese: string };

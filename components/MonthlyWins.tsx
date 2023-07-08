@@ -1,5 +1,6 @@
 import { starIcon } from '@/lib/icons';
 import { getWinFromId } from '@/lib/notion';
+import { Win } from '@/lib/types';
 import Window from './Window';
 
 const getData = async (ids: string[]) => {
@@ -10,8 +11,8 @@ const getData = async (ids: string[]) => {
   return allWins;
 };
 
-const MonthlyWins = async (props) => {
-  const winIds = props.wins.map((win) => win.id);
+const MonthlyWins = async ({ wins }: { wins: Win[] }) => {
+  const winIds: string[] = wins.map((win: Win) => win.id);
   const data = await getData(winIds);
   return (
     <Window English='Wins' Japanese='' width='w-96' height='h-72'>

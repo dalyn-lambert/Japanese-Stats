@@ -253,6 +253,10 @@ export const getAllProgressReports = async () => {
       name: page.properties.Name.title[0].plain_text,
       // @ts-ignore
       dates: page.properties.Date.date,
+      // @ts-ignore
+      wins: page.properties.Wins.relation,
+      // @ts-ignore
+      summary: page.properties.Summary.rich_text[0].plain_text,
     };
   });
   return metaData;
@@ -260,7 +264,7 @@ export const getAllProgressReports = async () => {
 
 export const getDetailsForMonth = async (id: string) => {
   const page = await notion.pages.retrieve({ page_id: id });
-  return {
+  const metaData: ProgressReport = {
     id: page.id,
     // @ts-ignore
     name: page.properties.Name.title[0].plain_text,
@@ -268,7 +272,10 @@ export const getDetailsForMonth = async (id: string) => {
     date: page.properties.Date.date,
     // @ts-ignore
     wins: page.properties.Wins.relation,
+    // @ts-ignore
+    summary: page.properties.Summary.rich_text[0].plain_text,
   };
+  return metaData;
 };
 
 export const getWinFromId = async (id: string) => {
