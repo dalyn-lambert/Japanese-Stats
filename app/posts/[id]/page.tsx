@@ -15,15 +15,12 @@ export default async function Post({ params }: { params: { id: string } }) {
   return (
     <div className='flex flex-row flex-wrap grow-0 p-2 gap-2'>
       <MonthlyHeader title={data.title} />
-      {/* <MonthlyLogs date={data.date} /> */}
       {/* @ts-expect-error Server Component */}
       <MonthlyWins wins={data.wins} />
-
-      {/* @ts-expect-error Server Component */}
       <MonthlySummary summary={data.summary} />
+      <MonthlyDaysSpent date={data.date} />
       {/* @ts-expect-error Server Component */}
       <MonthlyDonutChart date={data.date} />
-      <MonthlyDaysSpent date={data.date} />
     </div>
   );
 }
