@@ -4,10 +4,7 @@ import { formatISO } from 'date-fns';
 import Window from './Window';
 
 const getData = async (dates: MonthIncludes) => {
-  const activities = await getActivityForMonth(
-    formatISO(new Date(dates.date.start)),
-    formatISO(new Date(dates.date.end))
-  );
+  const activities = await getActivityForMonth(formatISO(new Date(dates.start)), formatISO(new Date(dates.end)));
   return activities;
 };
 

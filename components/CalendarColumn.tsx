@@ -24,7 +24,7 @@ async function CalendarColumn(props: CalendarColumnProps) {
       <div className='flex flex-col gap-2'>
         <div
           className={`w-32 h-7 py-1 px-2 flex flex-row items-center justify-between shrink-0 rounded-md text-sm text-white 
-        ${totalTimeForDay > 0 ? `bg-dark-gray` : `bg-mid-gray`}`}
+        ${totalTimeForDay > 0 ? `bg-red-400` : `bg-mid-gray`}`}
         >
           <span className={`${totalTimeForDay > 0 ? `fill-gray-200` : `fill-dark-gray`}`}>{starIcon}</span>
           <span className=''>{totalTimeForDay > 0 && `${toHoursAndMinutes(totalTimeForDay)}`}</span>
