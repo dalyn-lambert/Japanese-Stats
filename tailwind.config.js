@@ -44,6 +44,14 @@ module.exports = {
     'bg-speak-blue',
     'bg-gradient-1',
     'bg-gradient-2',
+
+    'fill-listen-purple',
+    'fill-read-pink',
+    'fill-watch-orange',
+    'fill-game-green',
+    'fill-speak-blue',
+    'fill-gradient-1',
+    'fill-gradient-2',
   ],
   plugins: [],
 };
