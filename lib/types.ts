@@ -31,7 +31,7 @@ export type ProgressReport = {
   id: string;
   title: string;
   date: MonthIncludes;
-  wins: Win[];
+  wins: Win[] | string;
   summary: string;
 };
 

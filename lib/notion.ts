@@ -247,6 +247,20 @@ export const getAllProgressReports = async () => {
   const allPages = pages.results;
 
   const metaData: ProgressReport[] = allPages.map((page) => {
+    let summary = '';
+    // @ts-ignore
+    if (page.properties.Summary.rich_text[0]) {
+      // @ts-ignore
+      summary = page.properties.Summary.rich_text[0].plain_text;
+    }
+
+    let wins = '';
+    // @ts-ignore
+    if (page.properties.Wins.relation) {
+      // @ts-ignore
+      wins = page.properties.Wins.relation;
+    }
+
     return {
       id: page.id,
       // @ts-ignore
@@ -254,9 +268,8 @@ export const getAllProgressReports = async () => {
       // @ts-ignore
       date: page.properties.Date.date,
       // @ts-ignore
-      wins: page.properties.Wins.relation,
-      // @ts-ignore
-      summary: page.properties.Summary.rich_text[0].plain_text,
+      wins,
+      summary,
     };
   });
   return metaData;
@@ -264,6 +277,19 @@ export const getAllProgressReports = async () => {
 
 export const getDetailsForMonth = async (id: string) => {
   const page = await notion.pages.retrieve({ page_id: id });
+  let summary = '';
+  // @ts-ignore
+  if (page.properties.Summary.rich_text[0]) {
+    // @ts-ignore
+    summary = page.properties.Summary.rich_text[0].plain_text;
+  }
+
+  let wins = '';
+  // @ts-ignore
+  if (page.properties.Wins.relation) {
+    // @ts-ignore
+    wins = page.properties.Wins.relation;
+  }
   const metaData: ProgressReport = {
     id: page.id,
     // @ts-ignore
@@ -271,9 +297,9 @@ export const getDetailsForMonth = async (id: string) => {
     // @ts-ignore
     date: page.properties.Date.date,
     // @ts-ignore
-    wins: page.properties.Wins.relation,
+    wins,
     // @ts-ignore
-    summary: page.properties.Summary.rich_text[0].plain_text,
+    summary,
   };
   return metaData;
 };
