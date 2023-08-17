@@ -1,7 +1,7 @@
-import Calendar from '@/components/Calendar';
 import GameLog from '@/components/GameLog';
 import LastStudied from '@/components/LastStudied';
 import MonthlyStats from '@/components/MonthlyStats';
+import RecentlyStudied from '@/components/RecentlyStudied';
 import TodayNotepad from '@/components/TodayNotepad';
 
 export default async function Home() {
@@ -9,7 +9,7 @@ export default async function Home() {
     <div className='flex flex-row flex-wrap gap-2 pt-2'>
       {/* https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}
       {/* @ts-expect-error Server Component */}
-      <Calendar />
+      <RecentlyStudied />
       {/* @ts-expect-error Server Component */}
       <TodayNotepad />
       {/* @ts-expect-error Server Component */}

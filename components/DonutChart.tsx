@@ -17,7 +17,6 @@ export default function DonutChart({ width, height, data, donutThickness }: Donu
   const top = centerY;
   const left = centerX;
 
-
   return (
     <svg width={width} height={height}>
       <Group top={top} left={left}>
