@@ -10,42 +10,7 @@ import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { BarStack } from '@visx/shape';
 import { defaultStyles, useTooltip, useTooltipInPortal } from '@visx/tooltip';
 
-const data = [
-  {
-    date: '2023-08-12',
-    聴く: '100',
-    読書: '20',
-    観る: '20',
-    ゲーム: '0',
-    話す: '0',
-  },
-  {
-    date: '2023-08-13',
-    聴く: '60',
-    読書: '15',
-    観る: '40',
-    ゲーム: '5',
-    話す: '0',
-  },
-  {
-    date: '2023-08-14',
-    聴く: '10',
-    読書: '0',
-    観る: '20',
-    ゲーム: '0',
-    話す: '30',
-  },
-  {
-    date: '2023-08-15',
-    聴く: '75',
-    読書: '13',
-    観る: '20',
-    ゲーム: '0',
-    話す: '0',
-  },
-];
-
-interface StudyDay {
+export interface StudyDay {
   date: string;
   話す: string;
   聴く: string;
@@ -54,15 +19,6 @@ interface StudyDay {
   観る: string;
   書く: string;
 }
-
-const exData = [
-  {
-    date: '2011-10-12',
-    'New York': '61.8',
-    'San Francisco': '61.5',
-    Austin: '75.3',
-  },
-];
 
 type ToolipData = {
   category: string;
@@ -73,6 +29,7 @@ type BarStackProps = {
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
+  data: StudyDay[];
 };
 
 const defaultMargin = {
@@ -90,40 +47,39 @@ const tooltipStyles = {
 
 const background = '#eaedff';
 
-const keys = Object.keys(data[0]).filter((d) => d !== 'date') as StudyCategory[];
+export default function BarGraphStack({ width, height, margin = defaultMargin, data }: BarStackProps) {
+  const keys = Object.keys(data[0]).filter((d) => d !== 'date') as StudyCategory[];
 
-const studyTotals = data.reduce((allTotals, currentDate) => {
-  const totalStudy = keys.reduce((dailyTotal, k) => {
-    // TS error, come back to this later
-    dailyTotal += Number(currentDate[k]);
-    return dailyTotal;
-  }, 0);
-  allTotals.push(totalStudy);
-  return allTotals;
-}, [] as number[]);
+  const studyTotals = data.reduce((allTotals, currentDate) => {
+    const totalStudy = keys.reduce((dailyTotal, k) => {
+      // TS error, come back to this later
+      dailyTotal += Number(currentDate[k]);
+      return dailyTotal;
+    }, 0);
+    allTotals.push(totalStudy);
+    return allTotals;
+  }, [] as number[]);
 
-// accessors
-// TS error, come back to this later
-const getDate = (d) => d.date;
+  // accessors
+  // TS error, come back to this later
+  const getDate = (d) => d.date;
 
-// scales
-const dateScale = scaleBand<string>({
-  domain: data.map(getDate),
-  padding: 0.2,
-});
+  // scales
+  const dateScale = scaleBand<string>({
+    domain: data.map(getDate),
+    padding: 0.2,
+  });
 
-const timeScale = scaleLinear<number>({
-  domain: [0, Math.max(...studyTotals)],
-});
+  const timeScale = scaleLinear<number>({
+    domain: [0, Math.max(...studyTotals)],
+  });
 
-const colorScale = scaleOrdinal<StudyCategory, string>({
-  domain: keys,
-  range: ['#52489C', '#CE6D8B', '#FA8334', '#018E42', '#247BA0'],
-});
+  const colorScale = scaleOrdinal<StudyCategory, string>({
+    domain: keys,
+    range: ['#52489C', '#CE6D8B', '#FA8334', '#018E42', '#247BA0'],
+  });
 
-let tooltipTimeout: number;
-
-export default function BarGraphStack({ width, height, margin = defaultMargin }: BarStackProps) {
+  let tooltipTimeout: number;
   const { tooltipOpen, tooltipLeft, tooltipTop, tooltipData, hideTooltip, showTooltip } = useTooltip<TooltipData>();
 
   const { containerRef, TooltipInPortal } = useTooltipInPortal({
