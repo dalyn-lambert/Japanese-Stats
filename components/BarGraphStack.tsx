@@ -1,6 +1,7 @@
 // https://github.com/airbnb/visx/issues/1637#issuecomment-1587440404
 'use client';
 import { StudyCategory } from '@/lib/types';
+import { formatJapaneseDate, toHoursAndMinutes } from '@/lib/utils';
 import { AxisBottom } from '@visx/axis';
 import { localPoint } from '@visx/event';
 import { Grid } from '@visx/grid';
@@ -17,7 +18,6 @@ export interface StudyDay {
   読書: string;
   ゲーム: string;
   観る: string;
-  書く: string;
 }
 
 type ToolipData = {
@@ -33,7 +33,7 @@ type BarStackProps = {
 };
 
 const defaultMargin = {
-  top: 10,
+  top: 30,
   right: 0,
   bottom: 0,
   left: 0,
@@ -63,6 +63,8 @@ export default function BarGraphStack({ width, height, margin = defaultMargin, d
   // accessors
   // TS error, come back to this later
   const getDate = (d) => d.date;
+
+  const formatDate = (date: string) => formatJapaneseDate(date);
 
   // scales
   const dateScale = scaleBand<string>({
@@ -114,7 +116,6 @@ export default function BarGraphStack({ width, height, margin = defaultMargin, d
         />
         <Group top={margin.top}>
           <BarStack<StudyDay, StudyCategory>
-            // TS error
             data={data}
             keys={keys}
             x={getDate}
@@ -159,12 +160,12 @@ export default function BarGraphStack({ width, height, margin = defaultMargin, d
         <AxisBottom
           top={yMax + margin.top}
           scale={dateScale}
-          // tickFormat={formatDate}
-          // change these later
-          stroke={'#a44afe'}
-          tickStroke={'#a44afe'}
+          tickFormat={formatDate}
+          // #5A5353 = dark-gray
+          stroke={'#5A5353'}
+          tickStroke={'#5A5353'}
           tickLabelProps={{
-            fill: '#a44afe',
+            fill: '#5A5353',
             fontSize: 11,
             textAnchor: 'middle',
           }}
@@ -187,10 +188,7 @@ export default function BarGraphStack({ width, height, margin = defaultMargin, d
           <div style={{ color: colorScale(tooltipData.key) }}>
             <strong>{tooltipData.key}</strong>
           </div>
-          <div>{tooltipData.bar.data[tooltipData.key]}℉</div>
-          <div>
-            <small>{getDate(tooltipData.bar.data)}</small>
-          </div>
+          <div>{toHoursAndMinutes(tooltipData.bar.data[tooltipData.key])}</div>
         </TooltipInPortal>
       )}
     </div>
