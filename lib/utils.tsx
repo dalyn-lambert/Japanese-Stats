@@ -115,7 +115,7 @@ export function sumArray(array: number[]) {
 }
 
 export function getTimeForCategory(category: StudyCategory, logs: StudyActivity[]) {
-  const filteredArray = logs.filter((log) => log.category === category);
+  const filteredArray = logs?.filter((log) => log.category === category);
   const time = sumArray(filteredArray.map((activity) => activity.time));
   return time;
 }

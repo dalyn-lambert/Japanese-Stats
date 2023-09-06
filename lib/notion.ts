@@ -1,4 +1,5 @@
 import { Client } from '@notionhq/client';
+import { format, subDays } from 'date-fns';
 import { TODAY_DB } from './globals';
 import { ProgressReport, StudyActivity, StudyCategory } from './types';
 
@@ -136,6 +137,60 @@ export const getActivityForMonth = async (start: string, end: string) => {
 
   return getActivityMetaData(results);
 };
+
+// export const getActivityForWeek = async (before: string) => {
+//   const after = format(subDays(new Date(before), 5), 'yyyy-MM-dd');
+//   let results = [];
+//   let data = await notion.databases.query({
+//     database_id: studyTrackerDB,
+//     filter: {
+//       and: [
+//         {
+//           property: 'Date',
+//           date: {
+//             on_or_after: after,
+//           },
+//         },
+//         {
+//           property: 'Date',
+//           date: {
+//             on_or_before: before,
+//           },
+//         },
+//       ],
+//     },
+//   });
+//   results = [...data.results];
+
+//   while (data.has_more) {
+//     data = await notion.databases.query({
+//       database_id: studyTrackerDB,
+//       filter: {
+//         and: [
+//           {
+//             property: 'Date',
+//             date: {
+//               on_or_after: start,
+//             },
+//           },
+//           {
+//             property: 'Date',
+//             date: {
+//               on_or_before: end,
+//             },
+//           },
+//         ],
+//       },
+//       // changed api-endpoints.d.ts to allow null
+//       start_cursor: data.next_cursor,
+//     });
+
+//     results = [...results, ...data.results];
+//   }
+//   console.log(results);
+
+//   return getActivityMetaData(results);
+// };
 
 export const getActivityForYear = async (start: string, end: string) => {
   let results = [];

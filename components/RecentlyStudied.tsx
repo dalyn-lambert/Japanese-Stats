@@ -1,26 +1,35 @@
 import { TODAY_DB } from '@/lib/globals';
 import { getStudyTimeForDate } from '@/lib/notion';
 import { getTimeForCategory } from '@/lib/utils';
+import { format, subDays } from 'date-fns';
 import BarGraphStack, { StudyDay } from './BarGraphStack';
 import Window from './Window';
 
-const getData = async () => {
-  const data = getStudyTimeForDate(TODAY_DB);
+const getData = async (date: string) => {
+  let data = [];
+  for (let i = 0; i < 6; i++) {
+    data.push(await getStudyTimeForDate(format(subDays(new Date(date), i), 'yyyy-MM-dd')));
+  }
   return data;
 };
 
 const RecentlyStudied = async () => {
-  const data = await getData();
-  const weeklyStats: StudyDay[] = [
-    {
-      date: TODAY_DB,
-      聴く: String(getTimeForCategory('聴く', data)),
-      ゲーム: String(getTimeForCategory('ゲーム', data)),
-      観る: String(getTimeForCategory('観る', data)),
-      話す: String(getTimeForCategory('話す', data)),
-      読書: String(getTimeForCategory('読書', data)),
-    },
-  ];
+  let date = TODAY_DB;
+  const data = await getData(date);
+  let weeklyStats: StudyDay[] = [];
+  for (let i = 0; i < 7; i++) {
+    date = format(subDays(new Date(date), i), 'yyyy-MM-dd');
+    weeklyStats.push({
+      date: date,
+      話す: getTimeForCategory('話す', data[i]),
+      聴く: getTimeForCategory('聴く', data[i]),
+      読書: getTimeForCategory('読書', data[i]),
+      ゲーム: getTimeForCategory('ゲーム', data[i]),
+      観る: getTimeForCategory('観る', data[i]),
+    });
+  }
+
+  console.log(weeklyStats);
 
   return (
     <Window English='Date' Japanese='日付' width={'w-[32rem]'} height='h-[20.25rem]'>
