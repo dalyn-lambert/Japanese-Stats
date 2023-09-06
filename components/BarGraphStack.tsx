@@ -4,7 +4,6 @@ import { StudyCategory } from '@/lib/types';
 import { formatJapaneseDate, toHoursAndMinutes } from '@/lib/utils';
 import { AxisBottom } from '@visx/axis';
 import { localPoint } from '@visx/event';
-import { Grid } from '@visx/grid';
 import { Group } from '@visx/group';
 import { LegendOrdinal } from '@visx/legend';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
@@ -34,10 +33,10 @@ type BarStackProps = {
 };
 
 const defaultMargin = {
-  top: 30,
+  top: 40,
   right: 0,
   bottom: 0,
-  left: 0,
+  left: 10,
 };
 
 const tooltipStyles = {
@@ -93,8 +92,8 @@ export default function BarGraphStack({ width, height, margin = defaultMargin, d
 
   if (width < 10) return null;
   // bounds
-  const xMax = width;
-  const yMax = height - margin.top - 100;
+  const xMax = width - margin.left;
+  const yMax = height - margin.top - 50;
 
   dateScale.rangeRound([0, xMax]);
   timeScale.range([yMax, 0]);
@@ -103,17 +102,6 @@ export default function BarGraphStack({ width, height, margin = defaultMargin, d
     <div style={{ position: 'relative' }}>
       <svg ref={containerRef} width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
-        <Grid
-          top={margin.top}
-          left={margin.left}
-          xScale={dateScale}
-          yScale={timeScale}
-          width={xMax}
-          height={yMax}
-          stroke='black'
-          strokeOpacity={0.1}
-          xOffset={dateScale.bandwidth() / 2}
-        />
         <Group top={margin.top}>
           <BarStack<StudyDay, StudyCategory>
             data={data}
@@ -161,11 +149,10 @@ export default function BarGraphStack({ width, height, margin = defaultMargin, d
           top={yMax + margin.top}
           scale={dateScale}
           tickFormat={formatDate}
-          // #5A5353 = dark-gray
-          stroke={'#5A5353'}
-          tickStroke={'#5A5353'}
+          stroke={'black'}
+          tickStroke={'black'}
           tickLabelProps={{
-            fill: '#5A5353',
+            fill: 'black',
             fontSize: 11,
             textAnchor: 'middle',
           }}
@@ -178,7 +165,6 @@ export default function BarGraphStack({ width, height, margin = defaultMargin, d
           width: '100%',
           display: 'flex',
           justifyContent: 'center',
-          fontSize: '14px',
         }}
       >
         <LegendOrdinal scale={colorScale} direction='row' labelMargin='0 15px 0 0' />
