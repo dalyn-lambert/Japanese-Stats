@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export type StudyCategory = '話す' | '聴く' | '読書' | 'ゲーム' | '観る' | '書く';
+export type StudyCategory = '話す' | '聴く' | '読書' | 'ゲーム' | '観る';
 
 export type StudyActivity = {
   id: string;

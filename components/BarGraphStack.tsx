@@ -9,20 +9,21 @@ import { Group } from '@visx/group';
 import { LegendOrdinal } from '@visx/legend';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { BarStack } from '@visx/shape';
+import { SeriesPoint } from '@visx/shape/lib/types';
 import { defaultStyles, useTooltip, useTooltipInPortal } from '@visx/tooltip';
 
 export interface StudyDay {
   date: string;
-  話す: string;
-  聴く: string;
-  読書: string;
-  ゲーム: string;
-  観る: string;
+  話す: number;
+  聴く: number;
+  読書: number;
+  ゲーム: number;
+  観る: number;
 }
 
-type ToolipData = {
-  category: string;
-  time: string;
+type TooltipData = {
+  key: StudyCategory;
+  bar: SeriesPoint<StudyDay>;
 };
 
 type BarStackProps = {
@@ -42,7 +43,8 @@ const defaultMargin = {
 const tooltipStyles = {
   ...defaultStyles,
   minWidth: 50,
-  backgroundColor: 'rgba(0,0,0,0.9)',
+  // base-gray
+  backgroundColor: '#B7B6C1',
 };
 
 const background = '#eaedff';
@@ -52,7 +54,6 @@ export default function BarGraphStack({ width, height, margin = defaultMargin, d
 
   const studyTotals = data.reduce((allTotals, currentDate) => {
     const totalStudy = keys.reduce((dailyTotal, k) => {
-      // TS error, come back to this later
       dailyTotal += Number(currentDate[k]);
       return dailyTotal;
     }, 0);
@@ -61,8 +62,7 @@ export default function BarGraphStack({ width, height, margin = defaultMargin, d
   }, [] as number[]);
 
   // accessors
-  // TS error, come back to this later
-  const getDate = (d) => d.date;
+  const getDate = (d: StudyDay) => d.date;
 
   const formatDate = (date: string) => formatJapaneseDate(date);
 
@@ -185,10 +185,10 @@ export default function BarGraphStack({ width, height, margin = defaultMargin, d
       </div>
       {tooltipOpen && tooltipData && (
         <TooltipInPortal top={tooltipTop} left={tooltipLeft} style={tooltipStyles}>
-          <div style={{ color: colorScale(tooltipData.key) }}>
+          <div className='text-black'>
             <strong>{tooltipData.key}</strong>
           </div>
-          <div>{toHoursAndMinutes(tooltipData.bar.data[tooltipData.key])}</div>
+          <div className='text-black'>{toHoursAndMinutes(tooltipData.bar.data[tooltipData.key])}</div>
         </TooltipInPortal>
       )}
     </div>

@@ -1,7 +1,7 @@
 import { StudyActivity, StudyCategory } from '@/lib/types';
 import { format, formatDistance, intervalToDuration, parseISO } from 'date-fns';
 import { ja } from 'date-fns/locale';
-import { bookmarkIcon, gameIcon, headphonesIcon, pencilIcon, speechIcon, watchIcon } from './icons';
+import { bookmarkIcon, gameIcon, headphonesIcon, speechIcon, watchIcon } from './icons';
 
 export function getIconForCategory(category: StudyCategory) {
   switch (category) {
@@ -15,8 +15,6 @@ export function getIconForCategory(category: StudyCategory) {
       return watchIcon;
     case '読書':
       return bookmarkIcon;
-    case '書く':
-      return pencilIcon;
     default:
       return '•';
   }
@@ -115,7 +113,11 @@ export function sumArray(array: number[]) {
 }
 
 export function getTimeForCategory(category: StudyCategory, logs: StudyActivity[]) {
-  const filteredArray = logs?.filter((log) => log.category === category);
-  const time = sumArray(filteredArray.map((activity) => activity.time));
-  return time;
+  if (!logs) {
+    return 0;
+  } else {
+    const filteredArray = logs.filter((log) => log.category === category);
+    const time = sumArray(filteredArray.map((activity) => activity.time));
+    return time;
+  }
 }
