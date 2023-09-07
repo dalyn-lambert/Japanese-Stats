@@ -29,7 +29,7 @@ const RecentlyStudied = async () => {
   }
 
   return (
-    <Window English='Date' Japanese='日付' width={'w-[32rem]'} height='h-[20rem]'>
+    <Window English='Recently Studied' Japanese='最近勉強したこと' width={'w-[32rem]'} height='h-[20rem]'>
       <div className='h-64 bg-slate-100 border-2 border-dark-gray rounded-sm'>
         <BarGraphStack width={500} height={250} data={weeklyStats} />
       </div>

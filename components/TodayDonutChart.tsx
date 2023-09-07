@@ -19,7 +19,7 @@ const DailyDonutChart = async () => {
     { category: '読書', time: getTimeForCategory('読書', data) },
   ];
   return (
-    <Window English='Time Spent Today' Japanese='Time Spent Today' width='w-72' height='h-72'>
+    <Window English="Today's Study Time" Japanese='今日の勉強時間' width='w-72' height='h-72'>
       <DonutChart width={225} height={225} data={dailyStats} donutThickness={30} />
     </Window>
   );
