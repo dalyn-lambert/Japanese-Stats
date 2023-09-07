@@ -6,11 +6,6 @@ import { Pie } from '@visx/shape';
 export default function DonutChart({ width, height, data, donutThickness }: DonutChartProps) {
   const getTime = (d: StudyStat) => d.time;
 
-  // const defaultMargin = { top: 10, right: 10, bottom: 10, left: 10 };
-
-  // const innerWidth = width - defaultMargin.left - defaultMargin.right;
-  // const innerHeight = height - defaultMargin.top - defaultMargin.bottom;
-
   const centerY = height / 2;
   const centerX = width / 2;
   const radius = Math.min(width, height) / 2;
