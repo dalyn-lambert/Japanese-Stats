@@ -46,7 +46,7 @@ const tooltipStyles = {
   backgroundColor: '#B7B6C1',
 };
 
-const background = '#eaedff';
+const background = 'rgb(241 245 249)';
 
 export default function BarGraphStack({ width, height, margin = defaultMargin, data }: BarStackProps) {
   const keys = Object.keys(data[0]).filter((d) => d !== 'date') as StudyCategory[];
@@ -101,7 +101,7 @@ export default function BarGraphStack({ width, height, margin = defaultMargin, d
   return width < 10 ? null : (
     <div style={{ position: 'relative' }}>
       <svg ref={containerRef} width={width} height={height}>
-        <rect x={0} y={0} width={width} height={height} fill={background} rx={14} />
+        <rect x={0} y={0} width={width} height={height} fill={background} />
         <Group top={margin.top}>
           <BarStack<StudyDay, StudyCategory>
             data={data}
@@ -121,6 +121,7 @@ export default function BarGraphStack({ width, height, margin = defaultMargin, d
                     height={bar.height}
                     width={bar.width}
                     fill={bar.color}
+                    rx={10}
                     onMouseLeave={() => {
                       tooltipTimeout = window.setTimeout(() => {
                         hideTooltip();
