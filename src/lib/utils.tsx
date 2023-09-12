@@ -58,7 +58,7 @@ export function getClassForLastStudied(date: string) {
   // edited type for Duration from intervalToDuration function
   // to say that all values will be defined
   const elapsedTime = intervalToDuration({ start: parseISO(date), end: new Date() });
-  if (elapsedTime.months !== 0) {
+  if (elapsedTime?.months !== 0) {
     return 'border';
   }
   // Type error: 'elapsedTime.days' is possibly 'undefined' during Vercel build
@@ -70,13 +70,13 @@ export function getClassForLastStudied(date: string) {
 
 export function getBorderForActivity(date: string, category: StudyCategory) {
   const elapsedTime = intervalToDuration({ start: parseISO(date), end: new Date() });
-  if (elapsedTime.months > 0) {
+  if (elapsedTime?.months > 0) {
     return `border-4 border-${getColorForCategory(category)}`;
-  } else if (elapsedTime.days >= 21) {
+  } else if (elapsedTime?.days >= 21) {
     return `border-8 border-${getColorForCategory(category)}`;
-  } else if (elapsedTime.days >= 14) {
+  } else if (elapsedTime?.days >= 14) {
     return `border-[12px] border-${getColorForCategory(category)}`;
-  } else if (elapsedTime.days >= 7) {
+  } else if (elapsedTime?.days >= 7) {
     return `border-[16px] border-${getColorForCategory(category)}`;
   }
   return 'border-0';
@@ -88,7 +88,7 @@ export function getBackgroundForActivity(category: StudyCategory) {
 
 export function getTimeSinceStudied(date: string) {
   const time = formatDistance(parseISO(date), new Date(), { addSuffix: true });
-  if (time.includes('hours')) {
+  if (time?.includes('hours')) {
     return 'Today';
   } else return time;
 }
