@@ -1,4 +1,4 @@
-import { StudyActivity, StudyCategory } from '@/lib/types';
+import { StudyActivity, StudyCategory, StudyStat } from '@/lib/types';
 import { format, formatDistance, intervalToDuration, parseISO } from 'date-fns';
 import { ja } from 'date-fns/locale';
 import { bookmarkIcon, gameIcon, headphonesIcon, speechIcon, watchIcon } from './icons';
@@ -119,6 +119,10 @@ export function toHoursAndMinutes(totalMinutes: number) {
 
 export function formatJapaneseDate(date: string) {
   return format(parseISO(date), 'MMM do', { locale: ja });
+}
+
+export function buildTimeArray(entry: StudyStat) {
+  return entry.time;
 }
 
 export function sumArray(array: number[]) {

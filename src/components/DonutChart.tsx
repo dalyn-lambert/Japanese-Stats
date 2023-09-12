@@ -1,5 +1,5 @@
 import { DonutChartProps, StudyStat } from '@/lib/types';
-import { getColorForChart } from '@/lib/utils';
+import { buildTimeArray, getColorForChart, sumArray, toHoursAndMinutes } from '@/lib/utils';
 import { Group } from '@visx/group';
 import { Pie } from '@visx/shape';
 
@@ -12,6 +12,9 @@ export default function DonutChart({ width, height, data, donutThickness }: Donu
   const top = centerY;
   const left = centerX;
 
+  // get total study time to display in center of chart
+  const timeArray = data.map(buildTimeArray);
+  const totalTime = toHoursAndMinutes(sumArray(timeArray));
   // type TooltipData = {
   //   key: StudyCategory;
   // };
@@ -36,8 +39,9 @@ export default function DonutChart({ width, height, data, donutThickness }: Donu
   // });
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div className='grid place-items-center'>
       {/* ref={containerRef} */}
+      <div className='absolute'>{totalTime}</div>
       <svg width={width} height={height}>
         <Group top={top} left={left}>
           <Pie

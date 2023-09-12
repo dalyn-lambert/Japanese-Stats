@@ -13,17 +13,17 @@ export default async function Home() {
     <div className='flex flex-row flex-wrap gap-2 pt-2'>
       {/* https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}
       {/* @ts-expect-error Server Component */}
-      <TodayNotepad />
+      {/* <TodayNotepad /> */}
       {/* @ts-expect-error Server Component */}
       <DailyDonutChart />
       {/* @ts-expect-error Server Component */}
-      <RecentlyStudied />
+      {/* <RecentlyStudied /> */}
       {/* <GameLog /> */}
       {/* <YearlyStats /> */}
       {/* @ts-expect-error Server Component */}
-      <LastStudied />
+      {/* <LastStudied /> */}
       {/* @ts-expect-error Server Component */}
-      <MonthlyStats />
+      {/* <MonthlyStats /> */}
     </div>
   );
 }
