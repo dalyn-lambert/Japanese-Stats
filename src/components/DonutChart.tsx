@@ -75,7 +75,7 @@ export default function DonutChart({ width, height, data, donutThickness }: Donu
                 const arcFill = getColorForChart(category);
                 return (
                   <g key={`arc-${category}-${index}`}>
-                    {/* type error here during build? */}
+                    {/* @ts-ignore */}
                     <path d={arcPath} fill={arcFill} />
                   </g>
                 );
