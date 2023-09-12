@@ -60,7 +60,9 @@ export function getClassForLastStudied(date: string) {
   const elapsedTime = intervalToDuration({ start: parseISO(date), end: new Date() });
   if (elapsedTime.months !== 0) {
     return 'border';
-  } else if (elapsedTime.days > 7) {
+  }
+  // Type error: 'elapsedTime.days' is possibly 'undefined' during Vercel build
+  else if (elapsedTime?.days > 7) {
     return 'border';
   } else return 'bg';
 }

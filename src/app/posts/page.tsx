@@ -3,6 +3,10 @@ import Window from '@/components/Window';
 import { getAllProgressReports } from '@/lib/notion';
 import Link from 'next/link';
 
+export const metadata = {
+  title: 'Home',
+};
+
 const getData = async () => {
   const data = await getAllProgressReports();
   return data;

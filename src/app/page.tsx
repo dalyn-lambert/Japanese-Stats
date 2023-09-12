@@ -4,6 +4,10 @@ import RecentlyStudied from '@/components/RecentlyStudied';
 import DailyDonutChart from '@/components/TodayDonutChart';
 import TodayNotepad from '@/components/TodayNotepad';
 
+export const metadata = {
+  title: 'Home',
+};
+
 export default async function Home() {
   return (
     <div className='flex flex-row flex-wrap gap-2 pt-2'>
