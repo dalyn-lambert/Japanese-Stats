@@ -179,7 +179,7 @@ export const getActivityForYear = async (start: string, end: string) => {
           },
         ],
       },
-      // changed api-endpoints.d.ts to allow null
+      // @ts-ignore
       start_cursor: data.next_cursor,
     });
 
