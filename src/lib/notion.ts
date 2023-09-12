@@ -127,8 +127,7 @@ export const getActivityForMonth = async (start: string, end: string) => {
           },
         ],
       },
-      // changed api-endpoints.d.ts to allow null
-      // changed next_cursor in api-endpoints.d.ts to allow undefined
+      // @ts-ignore
       start_cursor: data.next_cursor,
     });
 
