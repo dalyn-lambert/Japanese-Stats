@@ -62,6 +62,7 @@ export function getClassForLastStudied(date: string) {
     return 'border';
   }
   // Type error: 'elapsedTime.days' is possibly 'undefined' during Vercel build
+  // @ts-ignore
   else if (elapsedTime?.days > 7) {
     return 'border';
   } else return 'bg';
