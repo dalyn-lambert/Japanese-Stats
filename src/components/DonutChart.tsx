@@ -71,11 +71,11 @@ export default function DonutChart({ width, height, data, donutThickness }: Donu
             {(pie) => {
               return pie.arcs.map((arc, index) => {
                 const { category } = arc.data;
-                const arcPath = pie.path(arc);
+                const arcPath: string | undefined | null = pie.path(arc);
                 const arcFill = getColorForChart(category);
                 return (
                   <g key={`arc-${category}-${index}`}>
-                    {/* changed type of d to allow null but not undefined */}
+                    {/* type error here during build? */}
                     <path d={arcPath} fill={arcFill} />
                   </g>
                 );
