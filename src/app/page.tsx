@@ -12,17 +12,14 @@ export default function Home() {
     <div className='flex flex-row flex-wrap gap-2 pt-2'>
       {/* https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}
       {/* donut chart: 12.979s */}
-      {/* @ts-expect-error Server Component */}
       {/* <DailyDonutChart /> */}
       {/* today notepad: 7.497s */}
       {/* @ts-expect-error Server Component */}
       <TodayNotepad />
       {/* recently studied: 23.465s */}
-      {/* @ts-expect-error Server Component */}
       {/* <RecentlyStudied /> */}
       <div className='flex flex-col gap-2'>
         {/* listening: 31.067s */}
-        {/* @ts-expect-error Server Component */}
         {/* <ListeningTime /> */}
       </div>
       {/* last studied: 4.682s */}
