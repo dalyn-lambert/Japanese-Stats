@@ -4,8 +4,9 @@ import Window from './Window';
 export type LinkData = { label: string; route: string };
 
 const links: LinkData[] = [
-  { label: 'Start', route: '/' },
-  { label: 'All Posts', route: '/posts' },
+  { label: 'Home', route: '/' },
+  { label: 'Posts', route: '/posts' },
+  { label: 'Admin', route: '' },
 ];
 
 const TaskBar = async () => {
