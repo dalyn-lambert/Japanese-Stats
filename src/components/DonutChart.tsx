@@ -11,6 +11,7 @@ export default function DonutChart({ width, height, data, donutThickness }: Donu
   const radius = Math.min(width, height) / 2;
   const top = centerY;
   const left = centerX;
+  const background = 'rgb(241 245 249)';
 
   // get total study time to display in center of chart
   const timeArray = data.map(buildTimeArray);
@@ -43,6 +44,7 @@ export default function DonutChart({ width, height, data, donutThickness }: Donu
       {/* ref={containerRef} */}
       <div className='absolute grid place-items-center'>{totalTime}</div>
       <svg width={width} height={height}>
+        {/* <rect x={0} y={0} width={width} height={height} fill={background} /> */}
         <Group top={top} left={left}>
           <Pie
             data={data}

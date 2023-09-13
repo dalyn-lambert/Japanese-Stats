@@ -111,10 +111,10 @@ export function toHoursAndMinutes(totalMinutes: number) {
   const minutes = totalMinutes % 60;
   if (hours > 0) {
     if (minutes > 0) {
-      return `${hours} ${hours === 1 ? 'hr' : 'hrs'} ${minutes} mins`;
-    } else return `${hours} ${hours === 1 ? 'hour' : 'hours'}`;
+      return `${hours}時間 ${minutes}分`;
+    } else return `${hours}時間`;
   }
-  return `${minutes} mins`;
+  return `${minutes}分`;
 }
 
 export function formatJapaneseDate(date: string) {

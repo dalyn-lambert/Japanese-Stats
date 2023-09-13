@@ -1,11 +1,22 @@
 import { Client } from '@notionhq/client';
 import { TODAY_DB } from './globals';
-import { ProgressReport, StudyActivity, StudyCategory } from './types';
+import { ProgressReport, StudyActivity, StudyCategory, StudyStat } from './types';
 
 const notion = new Client({ auth: process.env.NOTION_KEY });
 
 const studyTrackerDB = process.env.NOTION_STUDY_TRACKER_DATABASE_ID as string;
 const studyPostsDB = process.env.NOTION_STUDY_POSTS_DATABASE_ID as string;
+
+function getLessActivityMetaData(pages: any) {
+  const activities: StudyStat[] = pages.map((page: any) => {
+    return {
+      category: page.properties.Category.select.name,
+      // @ts-ignore
+      time: page.properties['Time (mins)'].number,
+    };
+  });
+  return activities;
+}
 
 function getActivityMetaData(pages: any) {
   const activities: StudyActivity[] = pages.map((page: any) => {
@@ -135,6 +146,64 @@ export const getActivityForMonth = async (start: string, end: string) => {
   }
 
   return getActivityMetaData(results);
+};
+
+export const getActivityForCategoryAndTimePeriod = async (start: string, end: string, category: StudyCategory) => {
+  let results = [];
+  let data = await notion.databases.query({
+    database_id: studyTrackerDB,
+    filter: {
+      and: [
+        {
+          property: 'Date',
+          date: {
+            on_or_after: start,
+          },
+        },
+        {
+          property: 'Date',
+          date: {
+            on_or_before: end,
+          },
+        },
+        {
+          property: 'Category',
+          select: {
+            equals: category,
+          },
+        },
+      ],
+    },
+  });
+  results = [...data.results];
+
+  while (data.has_more) {
+    data = await notion.databases.query({
+      database_id: studyTrackerDB,
+      filter: {
+        and: [
+          {
+            property: 'Date',
+            date: {
+              on_or_after: start,
+            },
+          },
+          {
+            property: 'Date',
+            date: {
+              on_or_before: end,
+            },
+          },
+        ],
+      },
+      // @ts-ignore
+      start_cursor: data.next_cursor,
+    });
+
+    results = [...results, ...data.results];
+  }
+
+  return getLessActivityMetaData(results);
 };
 
 export const getActivityForYear = async (start: string, end: string) => {
