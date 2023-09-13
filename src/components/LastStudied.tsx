@@ -20,7 +20,10 @@ const getData = async () => {
 };
 
 const LastStudied = async () => {
+  console.time('last studied');
   const activities = await getData();
+  console.timeEnd('last studied');
+
   return (
     <Window English='Last Studied' Japanese='前回の学習' width='w-[50rem]' height='h-[25rem]'>
       <div className='h-[22rem] grid grid-cols-5 border-2 shadow-inner shadow-white border-dark-gray'>
