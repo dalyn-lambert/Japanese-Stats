@@ -3,7 +3,6 @@ import MonthlyStats from '@/components/MonthlyStats';
 import RecentlyStudied from '@/components/RecentlyStudied';
 import DailyDonutChart from '@/components/TodayDonutChart';
 import TodayNotepad from '@/components/TodayNotepad';
-import YearlyStats from '@/components/YearlyStats';
 
 export const metadata = {
   title: 'Home',
@@ -21,8 +20,6 @@ export default async function Home() {
       <DailyDonutChart />
       {/* @ts-expect-error Server Component */}
       <RecentlyStudied />
-      {/* @ts-expect-error Server Component */}
-      <YearlyStats />
       {/* @ts-expect-error Server Component */}
       <LastStudied />
       {/* @ts-expect-error Server Component */}
