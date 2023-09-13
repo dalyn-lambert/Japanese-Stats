@@ -1,4 +1,5 @@
 import LastStudied from '@/components/LastStudied';
+import RecentlyStudied from '@/components/RecentlyStudied';
 import DailyDonutChart from '@/components/TodayDonutChart';
 import TodayNotepad from '@/components/TodayNotepad';
 
@@ -16,7 +17,8 @@ export default function Home() {
       <DailyDonutChart /> {/* donut chart: 12.979s */}
       {/* @ts-expect-error Server Component */}
       <TodayNotepad /> {/* today notepad: 7.497s */}
-      {/* <RecentlyStudied /> */} {/* recently studied: 23.465s */}
+      {/* @ts-expect-error Server Component */}
+      <RecentlyStudied /> {/* recently studied: 23.465s */}
       <div className='flex flex-col gap-2'>
         {/* <ListeningTime /> */} {/* listening: 31.067s */}
       </div>
