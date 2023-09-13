@@ -24,7 +24,7 @@ const NavLink = ({ link }: NavLinkProps) => {
         isActive && 'underline underline-offset-4 decoration-4 decoration-gradient-1 font-bold'
       )}
     >
-      <Window key={link.label} English='' Japanese='' width='w-36' height='h-36'>
+      <Window key={link.label} English='' Japanese='' width='w-44' height='h-36'>
         {link.label}
       </Window>
     </Link>
