@@ -1,4 +1,5 @@
 import LastStudied from '@/components/LastStudied';
+import DailyDonutChart from '@/components/TodayDonutChart';
 import TodayNotepad from '@/components/TodayNotepad';
 
 export const metadata = {
@@ -11,20 +12,16 @@ export default function Home() {
   return (
     <div className='flex flex-row flex-wrap gap-2 pt-2'>
       {/* https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}
-      {/* donut chart: 12.979s */}
-      {/* <DailyDonutChart /> */}
-      {/* today notepad: 7.497s */}
       {/* @ts-expect-error Server Component */}
-      <TodayNotepad />
-      {/* recently studied: 23.465s */}
-      {/* <RecentlyStudied /> */}
+      <DailyDonutChart /> {/* donut chart: 12.979s */}
+      {/* @ts-expect-error Server Component */}
+      <TodayNotepad /> {/* today notepad: 7.497s */}
+      {/* <RecentlyStudied /> */} {/* recently studied: 23.465s */}
       <div className='flex flex-col gap-2'>
-        {/* listening: 31.067s */}
-        {/* <ListeningTime /> */}
+        {/* <ListeningTime /> */} {/* listening: 31.067s */}
       </div>
-      {/* last studied: 4.682s */}
       {/* @ts-expect-error Server Component */}
-      <LastStudied />
+      <LastStudied /> {/* last studied: 4.682s */}
     </div>
   );
 }
