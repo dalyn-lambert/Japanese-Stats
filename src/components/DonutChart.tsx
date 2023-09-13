@@ -41,7 +41,7 @@ export default function DonutChart({ width, height, data, donutThickness }: Donu
   return (
     <div className='grid place-items-center'>
       {/* ref={containerRef} */}
-      <div className='absolute'>{totalTime}</div>
+      <div className='absolute grid place-items-center'>{totalTime}</div>
       <svg width={width} height={height}>
         <Group top={top} left={left}>
           <Pie
