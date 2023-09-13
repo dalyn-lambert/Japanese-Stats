@@ -20,10 +20,9 @@ export default function Home() {
       <TodayNotepad />
       {/* @ts-expect-error Server Component */}
       <RecentlyStudied />
-      <div className='flex flex-col gap-2'>
-        {/* @ts-expect-error Server Component */}
+      {/* <div className='flex flex-col gap-2'>
         <ListeningTime />
-      </div>
+      </div> */}
       {/* @ts-expect-error Server Component */}
       <LastStudied />
     </div>
