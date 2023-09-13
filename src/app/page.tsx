@@ -10,7 +10,7 @@ export const metadata = {
 
 export const dynamic = 'force-dynamic';
 
-export default async function Home() {
+export default function Home() {
   return (
     <div className='flex flex-row flex-wrap gap-2 pt-2'>
       {/* https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}
