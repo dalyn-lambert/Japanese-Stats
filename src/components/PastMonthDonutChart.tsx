@@ -1,17 +1,19 @@
 import { getActivityForMonth } from '@/lib/notion';
-import { MonthIncludes, StudyStat } from '@/lib/types';
+import { StudyStat } from '@/lib/types';
 import { getTimeForCategory } from '@/lib/utils';
-import { formatISO } from 'date-fns';
+import { format, formatISO } from 'date-fns';
 import DonutChart from './DonutChart';
 import Window from './Window';
 
-const getData = async (date: MonthIncludes) => {
-  const activities = await getActivityForMonth(formatISO(new Date(date.start)), formatISO(new Date(date.end)));
+const getData = async (end: string) => {
+  const activities = await getActivityForMonth(formatISO(new Date(end)), formatISO(new Date()));
   return activities;
 };
 
-const MonthlyDonutChart = async ({ date }: { date: MonthIncludes }) => {
-  const data = await getData(date);
+const PastMonthDonutChart = async () => {
+  const today = new Date();
+  const end = format(today, 'yyyy-MM-01');
+  const data = await getData(end);
   const monthlyStats: StudyStat[] = [
     { category: '聴く', time: getTimeForCategory('聴く', data) },
     { category: 'ゲーム', time: getTimeForCategory('ゲーム', data) },
@@ -27,4 +29,4 @@ const MonthlyDonutChart = async ({ date }: { date: MonthIncludes }) => {
   );
 };
 
-export default MonthlyDonutChart;
+export default PastMonthDonutChart;
