@@ -1,4 +1,3 @@
-import TaskBar from '@/components/TaskBar';
 import './globals.css';
 
 export const metadata = {
@@ -10,12 +9,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en'>
       <body className='bg-background grid grid-flow-col'>
-        <div>
+        {/* <div>
           <div className='sticky top-0'>
-            {/* @ts-expect-error Server Component */}
             <TaskBar />
           </div>
-        </div>
+        </div> */}
         {children}
       </body>
     </html>

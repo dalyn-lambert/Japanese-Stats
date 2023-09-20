@@ -13,6 +13,7 @@
     "@types/node": "^18.16.3",
     "@types/react": "18.2.1",
     "@types/react-dom": "18.2.2",
+    "@vercel/postgres": "^0.4.1",
     "@visx/group": "^3.0.0",
     "@visx/scale": "^3.3.0",
     "@visx/shape": "^3.0.0",
