@@ -10,7 +10,7 @@ const getData = async (end: string) => {
   return activities;
 };
 
-const PastMonthDonutChart = async () => {
+const DonutChartCurrentMonth = async () => {
   const today = new Date();
   const end = format(today, 'yyyy-MM-01');
   const data = await getData(end);
@@ -23,10 +23,10 @@ const PastMonthDonutChart = async () => {
   ];
 
   return (
-    <Window English='Monthly Donut Chart' Japanese='Monthly Donut Chart' width='w-96' height='h-96'>
-      <DonutChart width={300} height={300} data={monthlyStats} donutThickness={30} />
+    <Window English='Monthly Study Time' Japanese='今月の勉強時間' width='w-64' height='h-64'>
+      <DonutChart width={175} height={175} data={monthlyStats} donutThickness={30} />
     </Window>
   );
 };
 
-export default PastMonthDonutChart;
+export default DonutChartCurrentMonth;

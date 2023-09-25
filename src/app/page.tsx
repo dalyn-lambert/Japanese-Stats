@@ -1,7 +1,7 @@
 import Calendar from '@/components/Calendar';
+import DonutChartCurrentMonth from '@/components/DonutChartCurrentMonth';
+import DonutChartToday from '@/components/DonutChartToday';
 import LastStudied from '@/components/LastStudied';
-import PastMonthDonutChart from '@/components/PastMonthDonutChart';
-import DailyDonutChart from '@/components/TodayDonutChart';
 import TodayNotepad from '@/components/TodayNotepad';
 import Vocab from '@/components/Vocab';
 
@@ -18,7 +18,7 @@ export default function Home() {
       {/* @ts-expect-error Server Component */}
       <Calendar /> {/* Calendar: 10.772s */}
       {/* @ts-expect-error Server Component */}
-      <DailyDonutChart /> {/*donut chart: 12.979s */}
+      <DonutChartToday /> {/*donut chart: 12.979s */}
       {/* @ts-expect-error Server Component */}
       <TodayNotepad /> {/* today notepad: 7.497s */}
       {/* @ts-expect-error Server Component */}
@@ -26,7 +26,7 @@ export default function Home() {
       {/* @ts-expect-error Server Component */}
       <LastStudied /> {/* last studied: 4.682s */}
       {/* @ts-expect-error Server Component */}
-      <PastMonthDonutChart />
+      <DonutChartCurrentMonth />
     </div>
   );
 }
