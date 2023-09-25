@@ -16,6 +16,7 @@ export default function DonutChart({ width, height, data, donutThickness }: Donu
   // get total study time to display in center of chart
   const timeArray = data.map(buildTimeArray);
   const totalTime = toHoursAndMinutes(sumArray(timeArray));
+  console.log(totalTime);
   // type TooltipData = {
   //   key: StudyCategory;
   // };
@@ -42,7 +43,7 @@ export default function DonutChart({ width, height, data, donutThickness }: Donu
   return (
     <div className='grid place-items-center'>
       {/* ref={containerRef} */}
-      <div className='absolute grid place-items-center'>{totalTime}</div>
+      <div className='absolute grid place-items-center'>{totalTime === '0分' ? 'No study time' : totalTime}</div>
       <svg width={width} height={height}>
         {/* <rect x={0} y={0} width={width} height={height} fill={background} /> */}
         <Group top={top} left={left}>
