@@ -1,4 +1,4 @@
-import { getActivityForMonth } from '@/lib/notion';
+import { getActivityBetweenDates } from '@/lib/notion';
 import { MonthIncludes, StudyStat } from '@/lib/types';
 import { getTimeForCategory } from '@/lib/utils';
 import { formatISO } from 'date-fns';
@@ -6,7 +6,7 @@ import DonutChart from './DonutChart';
 import Window from './Window';
 
 const getData = async (date: MonthIncludes) => {
-  const activities = await getActivityForMonth(formatISO(new Date(date.start)), formatISO(new Date(date.end)));
+  const activities = await getActivityBetweenDates(formatISO(new Date(date.start)), formatISO(new Date(date.end)));
   return activities;
 };
 

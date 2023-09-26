@@ -9,7 +9,7 @@ const getData = async () => {
   return activities;
 };
 
-const DailyDonutChart = async () => {
+const DonutChartToday = async () => {
   const data = await getData();
   const dailyStats: StudyStat[] = [
     { category: '聴く', time: getTimeForCategory('聴く', data) },
@@ -25,4 +25,4 @@ const DailyDonutChart = async () => {
   );
 };
 
-export default DailyDonutChart;
+export default DonutChartToday;

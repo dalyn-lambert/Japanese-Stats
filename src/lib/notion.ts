@@ -96,7 +96,7 @@ export const getActivityForDateAndCategory = async (date: string, category: Stud
   return getActivityMetaData(pages.results);
 };
 
-export const getActivityForMonth = async (start: string, end: string) => {
+export const getActivityBetweenDates = async (start: string, end: string) => {
   let results = [];
   let data = await notion.databases.query({
     database_id: studyTrackerDB,

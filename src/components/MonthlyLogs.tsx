@@ -1,10 +1,10 @@
-import { getActivityForMonth } from '@/lib/notion';
+import { getActivityBetweenDates } from '@/lib/notion';
 import { MonthIncludes } from '@/lib/types';
 import { formatISO } from 'date-fns';
 import Window from './Window';
 
 const getData = async (dates: MonthIncludes) => {
-  const activities = await getActivityForMonth(formatISO(new Date(dates.start)), formatISO(new Date(dates.end)));
+  const activities = await getActivityBetweenDates(formatISO(new Date(dates.start)), formatISO(new Date(dates.end)));
   return activities;
 };
 
