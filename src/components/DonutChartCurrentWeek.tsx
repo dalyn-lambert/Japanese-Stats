@@ -9,7 +9,6 @@ const getData = async (weekStart: Date) => {
   const start = format(new Date(weekStart), 'yyyy-MM-dd');
   const end = format(new Date(), 'yyyy-MM-dd');
   const activities = await getActivityBetweenDates(start, end);
-  console.log(activities);
   return activities;
 };
 
