@@ -16,7 +16,6 @@ export default function DonutChart({ width, height, data, donutThickness }: Donu
   // get total study time to display in center of chart
   const timeArray = data.map(buildTimeArray);
   const totalTime = toHoursAndMinutes(sumArray(timeArray));
-  console.log(totalTime);
   // type TooltipData = {
   //   key: StudyCategory;
   // };
