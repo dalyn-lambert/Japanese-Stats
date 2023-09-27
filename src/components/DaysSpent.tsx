@@ -3,7 +3,7 @@ import { differenceInDays, getMonth, getYear } from 'date-fns';
 import MonthlyCalendarColumn from './MonthlyCategoryColumn';
 import Window from './Window';
 
-const MonthlyDaysSpent = ({ date }: { date: MonthIncludes }) => {
+const DaysSpent = ({ date }: { date: MonthIncludes }) => {
   const daysInMonth = Math.abs(differenceInDays(new Date(date.start), new Date(date.end))) + 1;
   const month = getMonth(new Date(date.end)) + 1; // months are 0 indexed
   const year = getYear(new Date(date.end));
@@ -21,4 +21,4 @@ const MonthlyDaysSpent = ({ date }: { date: MonthIncludes }) => {
   );
 };
 
-export default MonthlyDaysSpent;
+export default DaysSpent;
