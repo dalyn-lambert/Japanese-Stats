@@ -14,9 +14,9 @@ async function CalendarBubble(props: CalendarBubbleProps) {
     <div className='flex flex-col gap-2'>
       <div
         className={`w-32 h-7 py-1 px-2 flex flex-row items-center justify-between shrink-0 rounded-md text-sm text-white 
-        ${totalTime > 0 ? `bg-${getColorForCategory(props.category)}` : `bg-mid-gray`}`}
+        bg-mid-gray`}
       >
-        <span className={`${totalTime > 0 ? `fill-gray-200` : `fill-dark-gray`}`}>
+        <span className={`${totalTime > 0 ? `fill-${getColorForCategory(props.category)}` : `fill-dark-gray`}`}>
           {getIconForCategory(props.category)}
         </span>
         <span>{totalTime > 0 && `${toHoursAndMinutes(totalTime)}`}</span>
