@@ -11,7 +11,7 @@ const getData = async () => {
 const TodayNotepad = async () => {
   const activities = await getData();
   return (
-    <Window English="Today's Studies" Japanese='今日の勉強' width='w-96' height='h-72'>
+    <Window English="Today's Studies" Japanese='今日の勉強' width='w-80' height='h-72'>
       <div className='h-64 bg-slate-100 border-2 border-dark-gray rounded-sm p-4 overflow-y-scroll'>
         <div className='border-b-2 border-black'>{TODAY_JP}</div>
         <div className='pt-2'>
