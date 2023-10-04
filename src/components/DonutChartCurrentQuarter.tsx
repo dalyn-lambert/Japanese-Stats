@@ -23,7 +23,7 @@ const DonutChartCurrentQuarter = async () => {
   ];
 
   return (
-    <Window English='Monthly Study Time' Japanese='今月の勉強時間' width='w-64' height='h-64'>
+    <Window English='Quarterly Study Time' Japanese='今四半期の勉強時間' width='w-64' height='h-64'>
       <DonutChart width={175} height={175} data={quarterlyStats} donutThickness={30} />
     </Window>
   );
