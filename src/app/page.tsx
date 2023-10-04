@@ -13,9 +13,9 @@ export const dynamic = 'force-dynamic';
 
 export default function Home() {
   return (
-    <div className='flex flex-row flex-wrap gap-2 p-2'>
+    <div className='flex flex-cols-2 gap-2 p-2'>
       {/* https://github.com/vercel/next.js/issues/42292#issuecomment-1298459024 */}
-      <div className='grid grid-cols-2 gap-2'>
+      <div className='grid grid-cols-2 gap-2 content-center'>
         {/* @ts-expect-error Server Component */}
         <DonutChartToday />
         {/* @ts-expect-error Server Component */}
@@ -25,10 +25,12 @@ export default function Home() {
         {/* @ts-expect-error Server Component */}
         <DonutChartCurrentQuarter />
       </div>
-      {/* @ts-expect-error Server Component */}
-      <TodayNotepad />
-      {/* @ts-expect-error Server Component */}
-      <LastStudied />
+      <div className='grid grid-cols-1 gap-2 justify-items-center content-center'>
+        {/* @ts-expect-error Server Component */}
+        <TodayNotepad />
+        {/* @ts-expect-error Server Component */}
+        <LastStudied />
+      </div>
     </div>
   );
 }
